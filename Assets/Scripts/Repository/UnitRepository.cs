@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+using Configurations;
 using UnityEngine;
 
 namespace Targeting
 {
-    [CreateAssetMenu(fileName = "new TargetVisualConfig", menuName = "Targeting/Targeting Visualize Config Repository", order = 0)]
-    public class UnitRepository : Repository<UnitData>
+    [CreateAssetMenu(fileName = "new UnitRepository", menuName = "Repository/Unit Repository", order = 0)]
+    public class UnitRepository : Repository<UnitConfiguration>
     {
-
     }
+    
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Configurations;
 using GameData;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class GameBoard : MonoBehaviour
 {
     public string mapName;
 
-    public Dictionary<ulong, GameUnit> gameUnits;
+    public Dictionary<ulong, GameUnit> gameUnits = new Dictionary<ulong, GameUnit>();
 
     public Terrain groundTerrain;
     public TerrainCollider groundTerrainCollider;
@@ -38,9 +39,11 @@ public class GameBoard : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        InstantiateUnit(0, new Vector2Int(0,0));
+        InstantiateUnit(0, new Vector2Int(1,0));
+        InstantiateUnit(0, new Vector2Int(2,0));
         _gameState = new GameState();
         mapName = mapName.Split('.')[0];
-        MapLayoutData activeMap = MapLayoutData.GetMapByName(mapName);
         groundTerrain = Terrain.activeTerrains[0];
         groundTerrainCollider = groundTerrain.GetComponent<TerrainCollider>();
     }
@@ -55,9 +58,22 @@ public class GameBoard : MonoBehaviour
         return groundTerrain.SampleHeight(worldPosition);
     }
 
-    public void InstantiateUnit<TUnitType>(uint UnitRepositoryID, Vector2Int boardPosition) where TUnitType : UnitData
+    public static Vector3 GetWorldPosFromBoardPos(Vector2Int boardPos)
     {
+        float worldPosX = boardPos.x;
+        float worldPosZ = boardPos.y;
+        float worldPosY = Instance.GetTerrainHeightFromPosition(new Vector3(worldPosX,0,worldPosZ));
+        return new Vector3(worldPosX, worldPosY, worldPosZ);
+    }
+
+    public void InstantiateUnit(ulong unitConfigID, Vector2Int boardPosition)
+    {
+        UnitConfiguration newConfig = RepositoryService.UnitConfigRepository.GetItem(unitConfigID);
         
+        GameUnit newUnit = new GameObject().AddComponent<GameUnit>();
+        newUnit.unitConfig = newConfig;
+        newUnit.boardPosition = boardPosition;
+        gameUnits.Add((ulong)gameUnits.Count, newUnit);
     }
     
     private GameState _gameState;

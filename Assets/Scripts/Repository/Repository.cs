@@ -1,34 +1,23 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using Targeting;
 using UnityEngine;
 
-public class Repository<T> : ScriptableObject
+public class Repository<T> : ScriptableObject where T : IRepositoryItem
 {
-    [SerializeField] protected T[] serializedConfigurations;
-    protected Dictionary<ulong, T> configurations;
+    [ShowInInspector]
+    protected List<T> items;
 
-    protected virtual T GetConfiguration(ulong id)
+    public virtual T GetItem(ulong id)
     {
-        if (configurations?.Count == 0)
+        foreach (T item in items)
         {
-            for(ulong i = 0; i < (ulong)serializedConfigurations.Length; i++)
+            if (item.ID == id)
             {
-                configurations.Add(GenerateUniqueID(), serializedConfigurations[i]);
+                return item;
             }
         }
-
-        T config;
-        configurations.TryGetValue(id, out config);
-        return config;
-    }
-    
-    private ulong GenerateUniqueID()
-    {
-        for (ulong i = 0; i < ulong.MaxValue; i++)
-        {
-            if (!configurations.ContainsKey(i))
-                return i;
-        }
-        Debug.LogError("Should not run out of ID's");
-        return ulong.MaxValue; 
+        Debug.LogError($"ID: {id} was not found. Returning DEFAULT");
+        return default;
     }
 }

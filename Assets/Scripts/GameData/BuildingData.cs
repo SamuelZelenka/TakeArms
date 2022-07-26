@@ -4,5 +4,4 @@ using UnityEngine;
 [Serializable]
 public class BuildingData : UnitData
 {
-   
 }
