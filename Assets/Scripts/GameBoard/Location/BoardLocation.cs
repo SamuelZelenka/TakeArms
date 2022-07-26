@@ -6,7 +6,6 @@ using UnityEngine.WSA;
 
 public class BoardLocation : MonoBehaviour
 {
-    private LocationData _locationData;
     private TileData[] _tileGrid = new TileData[64];
     private int _gridSize;
 

@@ -4,8 +4,17 @@ using UnityEngine;
 [Serializable]
 public class UnitData
 {
-    public readonly int unitID;
-    public Vector2Int size; // x: Right y: down
-    public Vector2Int tile;
-    public Vector2Int positionOnTile;
+    public readonly uint unitID;
+    public Vector2Int size; // x: Right y: Down
+
+    public UnitData()
+    {
+        unitID = GenerateUniqueID();
+        size = new Vector2Int(1, 1);
+    }
+
+    private static uint GenerateUniqueID()
+    {
+        return 0;
+    }
 }
