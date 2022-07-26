@@ -17,7 +17,26 @@ public class GameUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.up);
+            transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.down);
+            transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.right);
+            transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.left);
+            transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+        }
     }
 
     private void OnDrawGizmos()

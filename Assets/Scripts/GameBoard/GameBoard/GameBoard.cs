@@ -8,7 +8,7 @@ public class GameBoard : MonoBehaviour
 {
     public string mapName;
 
-    public Dictionary<ulong, GameUnit> gameUnits = new Dictionary<ulong, GameUnit>();
+    public List<GameUnit> gameUnits = new List<GameUnit>();
 
     public Terrain groundTerrain;
     public TerrainCollider groundTerrainCollider;
@@ -40,8 +40,7 @@ public class GameBoard : MonoBehaviour
             return;
         }
         InstantiateUnit(0, new Vector2Int(0,0));
-        InstantiateUnit(0, new Vector2Int(1,0));
-        InstantiateUnit(0, new Vector2Int(2,0));
+
         _gameState = new GameState();
         mapName = mapName.Split('.')[0];
         groundTerrain = Terrain.activeTerrains[0];
@@ -66,6 +65,11 @@ public class GameBoard : MonoBehaviour
         return new Vector3(worldPosX, worldPosY, worldPosZ);
     }
 
+    public static void MoveGameUnit(GameUnit unit, Vector2Int newPosition)
+    {
+        Instance.gameUnits.Find(x => x == unit).boardPosition = newPosition;
+    }
+
     public void InstantiateUnit(ulong unitConfigID, Vector2Int boardPosition)
     {
         UnitConfiguration newConfig = RepositoryService.UnitConfigRepository.GetItem(unitConfigID);
@@ -73,7 +77,7 @@ public class GameBoard : MonoBehaviour
         GameUnit newUnit = new GameObject().AddComponent<GameUnit>();
         newUnit.unitConfig = newConfig;
         newUnit.boardPosition = boardPosition;
-        gameUnits.Add((ulong)gameUnits.Count, newUnit);
+        gameUnits.Add(newUnit);
     }
     
     private GameState _gameState;
