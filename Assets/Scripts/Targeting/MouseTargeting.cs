@@ -7,15 +7,11 @@ public class MouseTargeting : MonoBehaviour
     
     private Camera mainCamera;
     private Vector3 worldPosition;
-    private Ray ray;
-    private Terrain groundTerrain;
-    private TerrainCollider groundTerrainCollider;
+    private Ray screenToMouseRay;
 
     private void Awake()
     {
         mainCamera = Camera.main;
-        groundTerrain = Terrain.activeTerrains[0];
-        groundTerrainCollider = groundTerrain.GetComponent<TerrainCollider>();
     }
 
     private void Update()
@@ -23,21 +19,16 @@ public class MouseTargeting : MonoBehaviour
         Vector2Int gridCoordinate;
         RaycastHit hit;
 
-        ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (groundTerrainCollider.Raycast(ray, out hit, Mathf.Infinity))
-            worldPosition = hit.point;
+        screenToMouseRay = mainCamera.ScreenPointToRay(Input.mousePosition); 
+        worldPosition = GameBoard.Instance.GetTerrainPosFromRay(screenToMouseRay);
         
         gridCoordinate = GetNodeAtWorldPos(worldPosition);
         
         float xPos = gridCoordinate.x;
-        float yPos = groundTerrain.SampleHeight(worldPosition);
+        float yPos = GameBoard.Instance.GetTerrainHeightFromPosition(worldPosition);
         float zPos = gridCoordinate.y;
         
         selectionObject.transform.position = new Vector3(xPos,yPos ,zPos);
-    }
-    void OnGUI()
-    {
-        GUILayout.Label(worldPosition.ToString());
     }
 
     public Vector2Int GetNodeAtWorldPos(Vector3 worldPos)

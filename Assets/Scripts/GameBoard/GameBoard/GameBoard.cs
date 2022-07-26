@@ -1,30 +1,66 @@
 using System;
+using System.Collections.Generic;
 using GameData;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
     public string mapName;
+
+    public Dictionary<ulong, GameUnit> gameUnits;
+
+    public Terrain groundTerrain;
+    public TerrainCollider groundTerrainCollider;
+    
+    #region INSTANCE
+    private static GameBoard _instance;
+    public static GameBoard Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameBoard>();
+                if (_instance == null)
+                {
+                    Debug.LogWarning("There is no GameBoard in the scene.");
+                }
+            }
+            return _instance;
+        }
+    }
+    #endregion
     
     private void Start()
     {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         _gameState = new GameState();
         mapName = mapName.Split('.')[0];
         MapLayoutData activeMap = MapLayoutData.GetMapByName(mapName);
-        _gameState.tileLayout = GetBoardTilesFromData(activeMap);
+        groundTerrain = Terrain.activeTerrains[0];
+        groundTerrainCollider = groundTerrain.GetComponent<TerrainCollider>();
     }
 
-    private GameState _gameState;
+    public Vector3 GetTerrainPosFromRay(Ray ray)
+    {
+        groundTerrainCollider.Raycast(ray, out RaycastHit hit, Mathf.Infinity);
+        return hit.point;
+    }
+    public float GetTerrainHeightFromPosition(Vector3 worldPosition)
+    {
+        return groundTerrain.SampleHeight(worldPosition);
+    }
+
+    public void InstantiateUnit<TUnitType>(uint UnitRepositoryID, Vector2Int boardPosition) where TUnitType : UnitData
+    {
+        
+    }
     
-    public void PlaceUnit(int unitId, Vector2Int tilePos, Vector2Int unitPosition)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void MoveUnit(Vector2Int fromTile, Vector2Int fromPosition, Vector2Int toTile, Vector2Int toPosition)
-    {
-        throw new NotImplementedException();
-    }
+    private GameState _gameState;
 
     #region Saving/Loading
     
@@ -36,24 +72,6 @@ public class GameBoard : MonoBehaviour
     public GameState SaveGame()
     {
         throw new NotImplementedException();
-    }
-
-    private static LocationData[,] GetBoardTilesFromData(MapLayoutData layoutData)
-    {
-        int gridSize = layoutData.GridSize;
-        int[,] tileIndices = layoutData.GetGrid();
-        LocationData[,] boardTiles = new LocationData[gridSize, gridSize];
-        for (int x = 0; x < gridSize; x++)
-        {
-            for (int y = 0; y < gridSize; y++)
-            {
-                if (tileIndices[x,y] != 0)
-                {
-                    boardTiles[x, y] = new LocationData();  
-                }
-            } 
-        }
-        return boardTiles;
     }
     #endregion
 }
