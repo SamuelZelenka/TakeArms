@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458ab5030e92499ba268622cdf1becdc, type: 3}
   m_Name: new UnitConfig
   m_EditorClassIdentifier: 
+  id: 0
+  data:
+    ID: 0
+    size: {x: 1, y: 1}
+  prefab: {fileID: 5920564904116611966, guid: abe89300ec4613545bc92980539b9e37, type: 3}
