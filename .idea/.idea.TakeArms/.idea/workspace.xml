@@ -52,10 +52,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15056">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="15056" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -75,7 +75,8 @@
       <workItem from="1656713002999" duration="31940000" />
       <workItem from="1657824287406" duration="6806000" />
       <workItem from="1658783027074" duration="7401000" />
-      <workItem from="1658832697635" duration="27148000" />
+      <workItem from="1658832697635" duration="27706000" />
+      <workItem from="1658949849384" duration="2252000" />
     </task>
     <servers />
   </component>
@@ -93,52 +94,39 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>38</line>
-          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="38" containingFunctionPresentation="method 'SaveUnitConfigRepository'">
-            <startOffsets>
-              <option value="1116" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1143" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>23</line>
+          <line>24</line>
           <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="23" containingFunctionPresentation="property 'Instance'">
             <startOffsets>
-              <option value="707" />
+              <option value="746" />
             </startOffsets>
             <endOffsets>
-              <option value="724" />
+              <option value="763" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>27</line>
+          <line>28</line>
           <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="27" containingFunctionPresentation="property 'Instance'">
             <startOffsets>
-              <option value="882" />
+              <option value="921" />
             </startOffsets>
             <endOffsets>
-              <option value="899" />
+              <option value="938" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>18</line>
+          <line>19</line>
           <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="18" containingFunctionPresentation="property 'Instance'">
             <startOffsets>
-              <option value="534" />
+              <option value="573" />
             </startOffsets>
             <endOffsets>
-              <option value="551" />
+              <option value="590" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />
