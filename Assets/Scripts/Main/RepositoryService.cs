@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Targeting;
 using UnityEditor;
 using UnityEngine;
 
-public class RepositoryService : ScriptableObject
+public class RepositoryService : SerializedScriptableObject
 {
     private const string RESOURCE_PATH = "Repository/RepositoryService"; 
     private const string PATH = "Assets/Resources/" + RESOURCE_PATH; 
@@ -31,12 +32,7 @@ public class RepositoryService : ScriptableObject
     #endregion
     
     [ShowInInspector]
-    [OnValueChanged("SaveUnitConfigRepository")]
+    [OdinSerialize]
     private UnitRepository _unitConfigRepository;
-
-    private void SaveUnitConfigRepository()
-    {
-        AssetDatabase.SaveAssets();
-    }
     public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
 }

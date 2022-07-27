@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Configurations;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Targeting

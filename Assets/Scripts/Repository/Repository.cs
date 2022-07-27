@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Targeting;
 using UnityEngine;
 
-public class Repository<T> : ScriptableObject where T : IRepositoryItem
+public class Repository<T> : SerializedScriptableObject where T : IRepositoryItem
 {
     [ShowInInspector]
+    [OdinSerialize]
     protected List<T> items;
 
     public virtual T GetItem(ulong id)
