@@ -77,6 +77,7 @@ public class GameBoard : MonoBehaviour
         GameUnit newUnit = new GameObject().AddComponent<GameUnit>();
         newUnit.unitConfig = newConfig;
         newUnit.boardPosition = boardPosition;
+        newUnit.unitConfig.InitObject(newUnit.transform);
         gameUnits.Add(newUnit);
     }
     
