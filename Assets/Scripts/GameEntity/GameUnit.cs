@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Configurations;
 using UnityEngine;
 
@@ -36,6 +33,11 @@ public class GameUnit : MonoBehaviour
         {
             GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.left);
             transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
