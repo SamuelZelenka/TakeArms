@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class MouseTargeting : MonoBehaviour
@@ -17,15 +18,14 @@ public class MouseTargeting : MonoBehaviour
     private void Update()
     {
         Vector2Int gridCoordinate;
-        RaycastHit hit;
 
         screenToMouseRay = mainCamera.ScreenPointToRay(Input.mousePosition); 
-        worldPosition = GameBoard.Instance.GetTerrainPosFromRay(screenToMouseRay);
+        worldPosition = GameSystemService.GameBoard.GetTerrainPosFromRay(screenToMouseRay);
         
         gridCoordinate = GetNodeAtWorldPos(worldPosition);
         
         float xPos = gridCoordinate.x;
-        float yPos = GameBoard.Instance.GetTerrainHeightFromPosition(worldPosition);
+        float yPos = GameSystemService.GameBoard.GetTerrainHeightFromPosition(worldPosition);
         float zPos = gridCoordinate.y;
         
         selectionObject.transform.position = new Vector3(xPos,yPos ,zPos);

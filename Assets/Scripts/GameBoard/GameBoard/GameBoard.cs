@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Configurations;
+using DefaultNamespace;
 using GameData;
 using UnityEngine;
 
@@ -13,28 +14,9 @@ public class GameBoard : MonoBehaviour
     public Terrain groundTerrain;
     public TerrainCollider groundTerrainCollider;
     
-    #region INSTANCE
-    private static GameBoard _instance;
-    public static GameBoard Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<GameBoard>();
-                if (_instance == null)
-                {
-                    Debug.LogWarning("There is no GameBoard in the scene.");
-                }
-            }
-            return _instance;
-        }
-    }
-    #endregion
-    
     private void Start()
     {
-        if (_instance != null)
+        if (GameSystemService.GameBoard != null && GameSystemService.GameBoard != this)
         {
             Destroy(gameObject);
             return;
@@ -61,13 +43,13 @@ public class GameBoard : MonoBehaviour
     {
         float worldPosX = boardPos.x;
         float worldPosZ = boardPos.y;
-        float worldPosY = Instance.GetTerrainHeightFromPosition(new Vector3(worldPosX,0,worldPosZ));
+        float worldPosY = GameSystemService.GameBoard.GetTerrainHeightFromPosition(new Vector3(worldPosX,0,worldPosZ));
         return new Vector3(worldPosX, worldPosY, worldPosZ);
     }
 
     public static void MoveGameUnit(GameUnit unit, Vector2Int newPosition)
     {
-        Instance.gameUnits.Find(x => x == unit).boardPosition = newPosition;
+        GameSystemService.GameBoard.gameUnits.Find(x => x == unit).boardPosition = newPosition;
     }
 
     public void InstantiateUnit(ulong unitConfigID, Vector2Int boardPosition)
