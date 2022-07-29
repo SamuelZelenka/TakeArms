@@ -16,13 +16,19 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/0a/cc503fc6/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/e1/8ef3a290/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/5e/77057bb1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Services/RepositoryService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/70/2a6ea029/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/ce/388f5a2c/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/e1/8ef3a290/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/3c/6b5f5ef6/RectOffset.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/5e/77057bb1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/a0/98d1a9dc/Resources.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -42,6 +48,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Build\Take arms.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="E:\Unity Projects\TakeArms\Build" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -52,10 +66,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20704">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="20704" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -76,7 +90,7 @@
       <workItem from="1657824287406" duration="6806000" />
       <workItem from="1658783027074" duration="7401000" />
       <workItem from="1658832697635" duration="27706000" />
-      <workItem from="1658949849384" duration="2252000" />
+      <workItem from="1658949849384" duration="9496000" />
     </task>
     <servers />
   </component>
@@ -93,56 +107,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>24</line>
-          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="23" containingFunctionPresentation="property 'Instance'">
+          <condition expression="foundInstance != null" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Services/GameSystemService.cs</url>
+          <line>17</line>
+          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Services\GameSystemService.cs" initialLine="17" containingFunctionPresentation="method 'GetSingleton'">
             <startOffsets>
-              <option value="746" />
+              <option value="631" />
             </startOffsets>
             <endOffsets>
-              <option value="763" />
+              <option value="715" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>28</line>
-          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="27" containingFunctionPresentation="property 'Instance'">
-            <startOffsets>
-              <option value="921" />
-            </startOffsets>
-            <endOffsets>
-              <option value="938" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Main/RepositoryService.cs</url>
-          <line>19</line>
-          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Main\RepositoryService.cs" initialLine="18" containingFunctionPresentation="property 'Instance'">
-            <startOffsets>
-              <option value="573" />
-            </startOffsets>
-            <endOffsets>
-              <option value="590" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/GameBoard/GameBoard/GameBoard.cs</url>
-          <line>74</line>
-          <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\GameBoard\GameBoard\GameBoard.cs" initialLine="70" containingFunctionPresentation="method 'InstantiateUnit'">
-            <startOffsets>
-              <option value="2078" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2169" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
