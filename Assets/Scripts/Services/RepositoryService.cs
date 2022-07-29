@@ -23,9 +23,12 @@ public class RepositoryService : SerializedScriptableObject
                 
             if (_instance != null)
                 return _instance;
-                
+
+#if UNITY_EDITOR
             _instance = CreateInstance<RepositoryService>();
-            AssetDatabase.CreateAsset(_instance, PATH + ".asset");
+            AssetDatabase.CreateAsset(_instance, PATH + ".asset");  
+#endif
+            
             return _instance;
         }
     }
