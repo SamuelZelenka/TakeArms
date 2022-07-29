@@ -1,7 +1,10 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class BuildingData : UnitData
+namespace TakeArms.GameData
 {
+    [Serializable]
+    public class BuildingData : UnitData
+    {
+    }  
 }

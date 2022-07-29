@@ -1,9 +1,12 @@
 using System;
 
-[Serializable]
-public class GameState
+namespace TakeArms.GameData
 {
-    public PlayerData[] players;
-    public int playerTurn;
-    public int startingPlayer;
+    [Serializable]
+    public class GameState
+    {
+        public PlayerData[] players;
+        public int playerTurn;
+        public int startingPlayer;
+    }
 }

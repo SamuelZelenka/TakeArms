@@ -1,4 +1,4 @@
-namespace Targeting
+namespace TakeArms.Repository
 {
     public interface IRepositoryItem
     {

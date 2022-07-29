@@ -1,15 +1,17 @@
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-[Serializable]
-public class UnitData
+namespace TakeArms.GameData
 {
-    public ulong ID;
-    public Vector2Int size; // x: Right y: Down
-
-    public UnitData()
+    [Serializable]
+    public class UnitData
     {
-        size = new Vector2Int(1, 1);
+        public ulong ID;
+        public Vector2Int size; // x: Right y: Down
+
+        public UnitData()
+        {
+            size = new Vector2Int(1, 1);
+        }
     }
 }

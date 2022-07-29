@@ -1,13 +1,16 @@
 using System;
 
-[Serializable]
-public class PlayerData
+namespace TakeArms.GameData
 {
-    public int playerID;
-    public int playerClassID;
-    public int[] deck;
-    public int money;
-    public int victoryPoints;
-    public SoldierData[] soldiers;
-    public BuildingData[] buildings;
+    [Serializable]
+    public class PlayerData
+    {
+        public int playerID;
+        public int playerClassID;
+        public int[] deck;
+        public int money;
+        public int victoryPoints;
+        public SoldierData[] soldiers;
+        public BuildingData[] buildings;
+    }
 }

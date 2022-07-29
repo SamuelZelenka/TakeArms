@@ -1,8 +1,10 @@
-using UnityEngine;
-using Sirenix.OdinInspector;
-using Targeting;
+using TakeArms.GameData;
+using TakeArms.Repository;
 
-namespace Configurations
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace TakeArms.Configurations
 {
     [CreateAssetMenu(fileName = "new UnitConfig", menuName = "Configurations/Unit/Default", order = 0)]
     public class UnitConfiguration : SerializedScriptableObject, IRepositoryItem
@@ -12,11 +14,8 @@ namespace Configurations
         public UnitData data = new UnitData();
 
         public GameObject prefab;
-        
-        public ulong ID
-        {
-            get { return id; }
-        }
+
+        public ulong ID => id;
 
         public virtual void InitObject(Transform parentObject)
         {

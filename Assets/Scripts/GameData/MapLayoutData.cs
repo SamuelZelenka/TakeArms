@@ -1,8 +1,10 @@
+using TakeArms.Utility;
+
 using System;
 using UnityEngine;
-using Utility;
 
-namespace GameData
+
+namespace TakeArms.GameData
 {
     [Serializable]
     public class MapLayoutData : ISavable

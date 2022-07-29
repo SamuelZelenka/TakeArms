@@ -1,7 +1,10 @@
 using System;
 
-[Serializable]
-public class SoldierData : UnitData
+namespace TakeArms.GameData
 {
-    public bool isWounded;
+    [Serializable]
+    public class SoldierData : UnitData
+    {
+        public bool isWounded;
+    }
 }

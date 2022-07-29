@@ -1,4 +1,4 @@
-namespace Utility
+namespace TakeArms.Utility
 {
     public interface ISavable
     {

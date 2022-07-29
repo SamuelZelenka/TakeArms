@@ -1,40 +1,43 @@
-using DefaultNamespace;
-using UnityEngine;
+using TakeArms.Services;
 
-public class MouseTargeting : MonoBehaviour
+namespace TakeArms.GameInput
 {
-    [SerializeField]
-    private GameObject selectionObject;
+    using UnityEngine;
+    public class MouseTargeting : MonoBehaviour
+    {
+        [SerializeField]
+        private GameObject selectionObject;
     
-    private Camera mainCamera;
-    private Vector3 worldPosition;
-    private Ray screenToMouseRay;
+        private Camera _mainCamera;
+        private Vector3 _worldPosition;
+        private Ray _screenToMouseRay;
 
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-    }
+        private void Awake()
+        {
+            _mainCamera = Camera.main;
+        }
 
-    private void Update()
-    {
-        Vector2Int gridCoordinate;
+        private void Update()
+        {
+            Vector2Int gridCoordinate;
 
-        screenToMouseRay = mainCamera.ScreenPointToRay(Input.mousePosition); 
-        worldPosition = GameSystemService.GameBoard.GetTerrainPosFromRay(screenToMouseRay);
+            _screenToMouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition); 
+            _worldPosition = GameSystemService.GameBoard.GetTerrainPosFromRay(_screenToMouseRay);
         
-        gridCoordinate = GetNodeAtWorldPos(worldPosition);
+            gridCoordinate = GetNodeAtWorldPos(_worldPosition);
         
-        float xPos = gridCoordinate.x;
-        float yPos = GameSystemService.GameBoard.GetTerrainHeightFromPosition(worldPosition);
-        float zPos = gridCoordinate.y;
+            float xPos = gridCoordinate.x;
+            float yPos = GameSystemService.GameBoard.GetTerrainHeightFromPosition(_worldPosition);
+            float zPos = gridCoordinate.y;
         
-        selectionObject.transform.position = new Vector3(xPos,yPos ,zPos);
-    }
+            selectionObject.transform.position = new Vector3(xPos,yPos ,zPos);
+        }
 
-    public Vector2Int GetNodeAtWorldPos(Vector3 worldPos)
-    {
-        int xPos = Mathf.RoundToInt(worldPos.x);
-        int yPos = Mathf.RoundToInt(worldPos.z);
-        return new Vector2Int(xPos, yPos);
+        public Vector2Int GetNodeAtWorldPos(Vector3 worldPos)
+        {
+            int xPos = Mathf.RoundToInt(worldPos.x);
+            int yPos = Mathf.RoundToInt(worldPos.z);
+            return new Vector2Int(xPos, yPos);
+        }
     }
 }

@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using Configurations;
-using Sirenix.Serialization;
+using TakeArms.Configurations;
+
 using UnityEngine;
 
 namespace Targeting

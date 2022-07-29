@@ -1,7 +1,10 @@
 using System;
 
-[Serializable]
-public class UpgradableBuildingData : BuildingData
+namespace TakeArms.GameData
 {
-    public int level;
+    [Serializable]
+    public class UpgradableBuildingData : BuildingData
+    {
+        public int level;
+    }
 }

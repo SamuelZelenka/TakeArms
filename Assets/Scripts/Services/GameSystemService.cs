@@ -1,7 +1,8 @@
-using System;
+using TakeArms.Systems;
+
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace TakeArms.Services
 {
     public class GameSystemService
     {

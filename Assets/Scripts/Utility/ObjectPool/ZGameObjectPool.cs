@@ -1,31 +1,34 @@
 using UnityEngine;
 
-public class ZGameObjectPool : ZObjectPool<GameObject>
+namespace TakeArms.Utility
 {
-    private GameObject prefab;
-    private Transform parent;
-
-    public override GameObject Acquire()
+    public class ZGameObjectPool : ZObjectPool<GameObject>
     {
-        GameObject acquired = base.Acquire();
-        acquired.SetActive(true);
-        return acquired;
-    }
+        private GameObject prefab;
+        private Transform parent;
 
-    public override void Release(GameObject releaseObject)
-    {
-        if (GetPoolSize() > capacity)
+        public override GameObject Acquire()
         {
-            Object.Destroy(releaseObject);
-            return;
+            GameObject acquired = base.Acquire();
+            acquired.SetActive(true);
+            return acquired;
         }
-        pool.Enqueue(releaseObject);
-        releaseObject.SetActive(false);
-    }
-    public ZGameObjectPool(GameObject prefab, Transform parent)
-    {
-        this.parent = parent;
-        this.prefab = prefab;
-        OnCreate = () => Object.Instantiate(prefab.gameObject, parent);
-    }
+
+        public override void Release(GameObject releaseObject)
+        {
+            if (GetPoolSize() > capacity)
+            {
+                Object.Destroy(releaseObject);
+                return;
+            }
+            pool.Enqueue(releaseObject);
+            releaseObject.SetActive(false);
+        }
+        public ZGameObjectPool(GameObject prefab, Transform parent)
+        {
+            this.parent = parent;
+            this.prefab = prefab;
+            OnCreate = () => Object.Instantiate(prefab.gameObject, parent);
+        }
+    } 
 }

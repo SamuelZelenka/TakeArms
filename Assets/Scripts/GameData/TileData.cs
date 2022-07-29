@@ -1,7 +1,16 @@
-public class TileData
+namespace TakeArms.GameData
 {
-    public enum TileState {Empty, Occupied, WeakCover, SolidCover}
+    public class TileData
+    {
+        public enum TileState
+        {
+            Empty,
+            Occupied,
+            WeakCover,
+            SolidCover
+        }
 
-    public TileState currentState;
+        public TileState currentState;
 
+    }
 }

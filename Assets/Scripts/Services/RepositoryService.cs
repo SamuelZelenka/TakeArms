@@ -1,41 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using Targeting;
 using UnityEditor;
 using UnityEngine;
 
-public class RepositoryService : SerializedScriptableObject
+namespace TakeArms.Services
 {
-    private const string RESOURCE_PATH = "Repository/RepositoryService"; 
-    private const string PATH = "Assets/Resources/" + RESOURCE_PATH; 
-    #region INSTANCE
-    private static RepositoryService _instance;
-    public static RepositoryService Instance
+    public class RepositoryService : SerializedScriptableObject
     {
-        get
+        private const string RESOURCE_PATH = "Repository/RepositoryService";
+        private const string PATH = "Assets/Resources/" + RESOURCE_PATH;
+
+        #region INSTANCE
+
+        private static RepositoryService _instance;
+
+        public static RepositoryService Instance
         {
-            if (_instance != null)
-                return _instance;
-            
-            _instance = Resources.Load<RepositoryService>(RESOURCE_PATH);
-                
-            if (_instance != null)
-                return _instance;
+            get
+            {
+                if (_instance != null)
+                    return _instance;
+
+                _instance = Resources.Load<RepositoryService>(RESOURCE_PATH);
+
+                if (_instance != null)
+                    return _instance;
 
 #if UNITY_EDITOR
-            _instance = CreateInstance<RepositoryService>();
-            AssetDatabase.CreateAsset(_instance, PATH + ".asset");  
+                _instance = CreateInstance<RepositoryService>();
+                AssetDatabase.CreateAsset(_instance, PATH + ".asset");
 #endif
-            
-            return _instance;
+
+                return _instance;
+            }
         }
+
+        #endregion
+
+        [ShowInInspector] [OdinSerialize] private UnitRepository _unitConfigRepository;
+        public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
     }
-    #endregion
-    
-    [ShowInInspector]
-    [OdinSerialize]
-    private UnitRepository _unitConfigRepository;
-    public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
 }

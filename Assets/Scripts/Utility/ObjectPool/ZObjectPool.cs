@@ -1,41 +1,34 @@
 using System;
 using System.Collections.Generic;
 
-public class ZObjectPool<T> where T : new()
+namespace TakeArms.Utility
 {
-    public int capacity;
-
-    protected delegate T CreationHandler();
-    protected CreationHandler OnCreate;
-
-    protected Queue<T> pool = new Queue<T>();
-
-    public int GetPoolSize() => pool.Count;
-    public ZObjectPool() => OnCreate = () => new T();
-
-    public ZObjectPool(Func<T> createFunction) => OnCreate = createFunction.Invoke;
-
-    public virtual T Acquire()
+    public class ZObjectPool<T> where T : new()
     {
-        T poolObject;
+        public int capacity;
 
-        if (pool.Count > 0)
+        protected delegate T CreationHandler();
+        protected CreationHandler OnCreate;
+
+        protected Queue<T> pool = new Queue<T>();
+
+        public int GetPoolSize() => pool.Count;
+        public ZObjectPool() => OnCreate = () => new T();
+
+        public ZObjectPool(Func<T> createFunction) => OnCreate = createFunction.Invoke;
+
+        public virtual T Acquire()
         {
-            poolObject = pool.Dequeue();
+            T poolObject = pool.Count > 0 ? pool.Dequeue() : OnCreate.Invoke();
+            return poolObject;
         }
-        else
+        public virtual void Release(T returnObject)
         {
-            poolObject = OnCreate.Invoke();
+            if (GetPoolSize() > capacity)
+            {
+                return;
+            }
+            pool.Enqueue(returnObject);
         }
-        return poolObject;
-    }
-    public virtual void Release(T returnObject)
-    {
-        if (GetPoolSize() > capacity)
-        {
-            returnObject = default;
-            return;
-        }
-        pool.Enqueue(returnObject);
-    }
+    } 
 }

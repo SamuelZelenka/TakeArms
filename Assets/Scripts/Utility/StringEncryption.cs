@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Utility
+namespace TakeArms.Utility
 {
     public static class StringEncryption
     {
@@ -26,7 +26,6 @@ namespace Utility
                 Code(tempData, formattedKey);
                 cipher += ConvertUIntToString(tempData[0]) + ConvertUIntToString(tempData[1]);
             }
-
             return cipher;
         }
     

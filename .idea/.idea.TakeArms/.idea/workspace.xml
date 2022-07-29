@@ -90,7 +90,7 @@
       <workItem from="1657824287406" duration="6806000" />
       <workItem from="1658783027074" duration="7401000" />
       <workItem from="1658832697635" duration="27706000" />
-      <workItem from="1658949849384" duration="9496000" />
+      <workItem from="1658949849384" duration="15798000" />
     </task>
     <servers />
   </component>
@@ -109,13 +109,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <condition expression="foundInstance != null" language="C#" />
           <url>file://$PROJECT_DIR$/Assets/Scripts/Services/GameSystemService.cs</url>
-          <line>17</line>
+          <line>18</line>
           <properties documentPath="E:\Unity Projects\TakeArms\Assets\Scripts\Services\GameSystemService.cs" initialLine="17" containingFunctionPresentation="method 'GetSingleton'">
             <startOffsets>
-              <option value="631" />
+              <option value="643" />
             </startOffsets>
             <endOffsets>
-              <option value="715" />
+              <option value="727" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />

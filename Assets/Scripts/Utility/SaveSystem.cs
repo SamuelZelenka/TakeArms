@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Utility
+namespace TakeArms.Utility
 {
     public static class SaveSystem
     {
@@ -49,6 +49,7 @@ namespace Utility
             }
             return null;
         }
+        
         public static bool DeleteFile(string fileName, string directory, string fileType)
         {
             string path = GetDirectoryPath(directory) + fileName + fileType;
@@ -64,8 +65,6 @@ namespace Utility
         {
             string mapDirectoryPath = SaveSystem.GetDirectoryPath(directory);
             return Directory.GetFiles(mapDirectoryPath, $"*{fileType}");
-
         }
-        
     }
 }

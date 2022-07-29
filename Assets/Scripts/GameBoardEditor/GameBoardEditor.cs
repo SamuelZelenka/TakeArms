@@ -1,11 +1,12 @@
-using System;
+using TakeArms.GameData;
+using TakeArms.Systems;
+using TakeArms.Utility;
+
 using System.Linq;
 using System.Collections.Generic;
-using GameData;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 
 public class GameBoardEditor : MonoBehaviour
 {
@@ -67,7 +68,6 @@ public class GameBoardEditor : MonoBehaviour
             
             void SelectMap(string mapFileName)
             {
-                int mapNameLength = mapFileName.Length - MapLayoutData.FILE_TYPE.Length;
                 string[] fileNameSplit =mapFileName.Split('.');
                 _existingMaps[_selectedMapIndex] = fileNameSplit[0];
             }
