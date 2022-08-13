@@ -16,19 +16,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/695d1cc93cca45069c528c15c9fdd7493e2800/0a/cc503fc6/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/e1/8ef3a290/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/5e/77057bb1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Services/RepositoryService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/70/2a6ea029/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/e1/8ef3a290/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/ce/388f5a2c/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/5e/77057bb1/ScriptableObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/3c/6b5f5ef6/RectOffset.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Services/RepositoryService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/adfa4b62400849189388df71c9e26e89144200/a0/98d1a9dc/Resources.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -44,7 +38,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.50461537" />
     <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -66,10 +62,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20704">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="20704" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -90,7 +86,10 @@
       <workItem from="1657824287406" duration="6806000" />
       <workItem from="1658783027074" duration="7401000" />
       <workItem from="1658832697635" duration="27706000" />
-      <workItem from="1658949849384" duration="15798000" />
+      <workItem from="1658949849384" duration="16409000" />
+      <workItem from="1659182142256" duration="9692000" />
+      <workItem from="1659210389982" duration="4364000" />
+      <workItem from="1659987709127" duration="4073000" />
     </task>
     <servers />
   </component>

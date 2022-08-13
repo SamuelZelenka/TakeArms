@@ -1,4 +1,5 @@
 using TakeArms.Configurations;
+using TakeArms.Services;
 using TakeArms.Systems;
 
 using UnityEngine;
@@ -12,30 +13,36 @@ namespace TakeArms.GameUnits
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (GameSystemService.TurnSystem.GetCurrentRoundState().GetType() == typeof(PlayTurnState))
             {
-                GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.up);
-                transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.down);
-                transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.right);
-                transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                GameBoard.MoveGameUnit(this,boardPosition + Vector2Int.left);
-                transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
-            }
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.up);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Application.Quit();
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.down);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                }
+
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.right);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.left);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Application.Quit();
+                }
             }
         }
 
