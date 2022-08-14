@@ -8,7 +8,7 @@ namespace TakeArms.GameUnits
 {
     public class GameUnit : MonoBehaviour
     {
-        public Vector2Int boardPosition;
+        public GameUnitStatus unitStatus;
         public UnitConfiguration unitConfig;
 
         void Update()
@@ -17,26 +17,26 @@ namespace TakeArms.GameUnits
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.up);
-                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                    GameBoard.MoveGameUnit(this, unitStatus.boardPosition + Vector2Int.up);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(unitStatus.boardPosition);
                 }
 
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.down);
-                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                    GameBoard.MoveGameUnit(this, unitStatus.boardPosition + Vector2Int.down);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(unitStatus.boardPosition);
                 }
 
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.right);
-                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                    GameBoard.MoveGameUnit(this, unitStatus.boardPosition + Vector2Int.right);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(unitStatus.boardPosition);
                 }
 
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    GameBoard.MoveGameUnit(this, boardPosition + Vector2Int.left);
-                    transform.position = GameBoard.GetWorldPosFromBoardPos(boardPosition);
+                    GameBoard.MoveGameUnit(this, unitStatus.boardPosition + Vector2Int.left);
+                    transform.position = GameBoard.GetWorldPosFromBoardPos(unitStatus.boardPosition);
                 }
 
                 if (Input.GetKeyDown(KeyCode.Escape))
@@ -44,12 +44,6 @@ namespace TakeArms.GameUnits
                     Application.Quit();
                 }
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(GameBoard.GetWorldPosFromBoardPos(boardPosition), 0.2f);
         }
     }
 }

@@ -1,7 +1,7 @@
 using TakeArms.Configurations;
 using TakeArms.Services;
 using TakeArms.GameUnits;
-
+using TakeArms.Player;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,9 +21,10 @@ namespace TakeArms.Systems
                 Destroy(gameObject);
                 return;
             }
-            
+
             //REMOVE TEMP UNIT AT SOME POINT
-            InstantiateUnit(0, new Vector2Int(0,0));
+            GameUnit newUnit = GameUnitFactory.CreatePlayerUnit(0, new GameUnitStatus(), PlayerColor.Red);
+            gameUnits.Add(newUnit);
             //REMOVE TEMP UNIT AT SOME POINT
             
             _groundTerrain = Terrain.activeTerrains[0];
@@ -51,18 +52,8 @@ namespace TakeArms.Systems
     
         public static void MoveGameUnit(GameUnit unit, Vector2Int newPosition)
         {
-            GameSystemService.GameBoard.gameUnits.Find(x => x == unit).boardPosition = newPosition;
-        }
-    
-        public void InstantiateUnit(ulong unitConfigID, Vector2Int boardPosition)
-        {
-            UnitConfiguration newConfig = RepositoryService.UnitConfigRepository.GetItem(unitConfigID);
-            
-            GameUnit newUnit = new GameObject().AddComponent<GameUnit>();
-            newUnit.unitConfig = newConfig;
-            newUnit.boardPosition = boardPosition;
-            newUnit.unitConfig.InitObject(newUnit.transform);
-            gameUnits.Add(newUnit);
+            GameUnit unitToMove = GameSystemService.GameBoard.gameUnits.Find(x => x == unit);
+            unitToMove.unitStatus.boardPosition = newPosition;
         }
     }
 }
