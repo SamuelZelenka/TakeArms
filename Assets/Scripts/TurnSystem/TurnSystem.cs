@@ -1,7 +1,7 @@
-using System;
-using TakeArms.Systems;
 using TakeArms.Utility;
+using TakeArms.Player;
 using UnityEngine;
+using TakeArms.Services;
 
 namespace TakeArms.Systems
 {
@@ -18,11 +18,16 @@ namespace TakeArms.Systems
 
         private int _startingPlayer = 0;
         private int _currentPlayer = 0;
-        private int _playerCount = 2;
+
+        public int StartingPlayer => _startingPlayer;
+        public int CurrentPlayer => _currentPlayer;
 
         private void Start()
         {
             roundState = new CardPickState();
+
+            PlayerProfile[] newPlayers = { new PlayerProfile() };
+            GameSystemService.PlayerSystem.SetPlayers(newPlayers);
         }
 
         private void Update()
@@ -36,9 +41,7 @@ namespace TakeArms.Systems
 
         private void OnGUI()
         {
-            GUI.Label(new Rect(5,5, 200,100 ), "State: " + roundState.GetType());
-            // GUI.Label(new Rect(5,105, 200,100 ), _startingPlayer.ToString());
-            // GUI.Label(new Rect(5,210, 200,100 ), roundState.ToString());
+            GUI.Label(new Rect(5,5, 500,100 ), "State: " + roundState.GetType());
         }
 
         public RoundState GetCurrentRoundState()
@@ -53,15 +56,13 @@ namespace TakeArms.Systems
 
         public void NextPlayerTurn()
         {
-            _currentPlayer = MathUtility.WrapModulo(_currentPlayer + 1, _playerCount);
+            _currentPlayer = MathUtility.WrapModulo(_currentPlayer + 1, GameSystemService.PlayerSystem.PlayerCount);
         }
 
         private void NextRoundState()
         {
             roundState = roundState.GetNextRoundState();
         }
-
-
     } 
 }
 

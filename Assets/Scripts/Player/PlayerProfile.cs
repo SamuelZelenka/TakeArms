@@ -6,10 +6,18 @@ using UnityEngine;
 namespace TakeArms.Player
 {
     public enum PlayerColor { Red, Green, Blue, Yellow }
-    [Serializable]
-    public class PlayerStatus
+
+
+    public class PlayerProfile
     {
         PlayerColor color;
-        GameUnitStatus[] GameUnits;
+        PlayerStatus status;
+    }
+
+    [Serializable]
+    public struct PlayerStatus
+    {
+        private int _money;
+        private GameUnitStatus[] _gameUnits;
     }
 }

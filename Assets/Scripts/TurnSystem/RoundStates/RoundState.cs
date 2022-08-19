@@ -1,3 +1,5 @@
+using TakeArms.Services;
+
 namespace TakeArms.Systems
 {
     public class CardPickState : RoundState
@@ -12,6 +14,15 @@ namespace TakeArms.Systems
     
     public class PlayOrderState : RoundState
     {
+        protected override void Start()
+        {
+            for (int i = 0; i < GameSystemService.PlayerSystem.PlayerCount; i++)
+            {
+
+            }
+            base.Start();
+        }
+
         public override void Update()
         {
             
