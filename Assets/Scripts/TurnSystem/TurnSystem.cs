@@ -22,11 +22,13 @@ namespace TakeArms.Systems
         public int StartingPlayer => _startingPlayer;
         public int CurrentPlayer => _currentPlayer;
 
+        public bool showCurrentPlayerDebug = false;
+
         private void Start()
         {
             roundState = new CardPickState();
 
-            PlayerProfile[] newPlayers = { new PlayerProfile() };
+            PlayerProfile[] newPlayers = { new PlayerProfile(PlayerColor.Red), new PlayerProfile(PlayerColor.Green) };
             GameSystemService.PlayerSystem.SetPlayers(newPlayers);
         }
 
@@ -42,6 +44,13 @@ namespace TakeArms.Systems
         private void OnGUI()
         {
             GUI.Label(new Rect(5,5, 500,100 ), "State: " + roundState.GetType());
+            if (showCurrentPlayerDebug)
+            {
+                Color previousColor = GUI.color;
+                GUI.color = GameSystemService.PlayerSystem.players[_currentPlayer].GetColor();
+                GUI.Label(new Rect(5, 25, 500, 100), "Current Player: " + GameSystemService.PlayerSystem.players[_currentPlayer].color.ToString());
+                GUI.color = previousColor;
+            }
         }
 
         public RoundState GetCurrentRoundState()
@@ -61,8 +70,14 @@ namespace TakeArms.Systems
 
         private void NextRoundState()
         {
+            roundState.End();
             roundState = roundState.GetNextRoundState();
+            roundState.Start();
         }
-    } 
+        public void ShowCurrentPlayer(bool isShowing)
+        {
+            showCurrentPlayerDebug = isShowing;
+        }
+    }
 }
 

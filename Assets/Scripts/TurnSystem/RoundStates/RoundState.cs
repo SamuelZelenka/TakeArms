@@ -14,7 +14,7 @@ namespace TakeArms.Systems
     
     public class PlayOrderState : RoundState
     {
-        protected override void Start()
+        public override void Start()
         {
             for (int i = 0; i < GameSystemService.PlayerSystem.PlayerCount; i++)
             {
@@ -33,9 +33,23 @@ namespace TakeArms.Systems
     
     public class PlayTurnState : RoundState
     {
+        public override void Start()
+        {
+            base.Start();
+            GameSystemService.TurnSystem.ShowCurrentPlayer(true);
+        }
         public override void Update()
         {
-            
+            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.RightControl))
+            {
+                GameSystemService.TurnSystem.NextPlayerTurn();
+            }
+        }
+
+        public override void End()
+        {
+            base.End();
+            GameSystemService.TurnSystem.ShowCurrentPlayer(false);
         }
 
         public override RoundState GetNextRoundState() => new EndTurnState();
@@ -58,12 +72,12 @@ namespace TakeArms.Systems
         public StateHandler OnStart;
         public StateHandler OnEnd;
 
-        protected virtual void Start()
+        public virtual void Start()
         {
             OnStart?.Invoke();
         }
 
-        protected virtual void End()
+        public virtual void End()
         {
             OnEnd?.Invoke();
         }

@@ -1,10 +1,12 @@
+using Sirenix.Serialization;
 using System.Collections;
 using TakeArms.Player;
 using UnityEngine;
 
 public class PlayerSystem : MonoBehaviour
 {
-    PlayerProfile[] players;
+    [OdinSerialize]
+    public PlayerProfile[] players;
     public int PlayerCount { get; private set; }
 
     public void SetPlayers(PlayerProfile[] players)
