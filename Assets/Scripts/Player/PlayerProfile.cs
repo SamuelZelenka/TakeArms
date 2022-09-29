@@ -10,12 +10,12 @@ namespace TakeArms.Player
 
     public class PlayerProfile
     {
+        public ulong clientID;
         public PlayerColor color;
-        PlayerStatus status;
 
-        public PlayerProfile(PlayerColor teamColor)
+        public PlayerProfile(ulong clientID)
         {
-            color = teamColor;
+            this.clientID = clientID;
         }
         public Color GetColor()
         {

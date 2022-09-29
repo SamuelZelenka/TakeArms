@@ -16,6 +16,9 @@ namespace TakeArms.Services
         private static PlayerSystem _playerSystem;
         public static PlayerSystem PlayerSystem => _playerSystem == null ? _playerSystem = GetSingleton<PlayerSystem>() : _playerSystem;
 
+        private static RoundStateSystem _roundStateSystem;
+        public static RoundStateSystem RoundStateSystem => _roundStateSystem == null ? _roundStateSystem = GetSingleton<RoundStateSystem>() : _roundStateSystem;
+
         private static T GetSingleton<T>() where T : MonoBehaviour
         {
             T foundInstance = GameObject.FindObjectOfType<T>();
