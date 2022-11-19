@@ -1,77 +1,76 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TakeArms.Utility;
 
 public class CardHandUI : MonoBehaviour
 {
+    [SerializeField]
+    private List<GameObject> cards;
+
+    public Vector3 curveStartPos;
+    public Vector3 curveEndPos;
+    public Vector3 curveStartHandle;
+    public Vector3 curveEndHandle;
+
+    public Vector3 cardLookAtPoint;
 
     [SerializeField]
-    private GameObject[] cards;
+    private int _maxHandSize = 10;
 
     [SerializeField]
-    private Transform _curveStartPos;
+    private float _spacing = 1;
 
+    [Range(0,1)]
     [SerializeField]
-    private Transform _curveEndPos;
+    private float posT;
 
-    [SerializeField]
-    private float curveHeight;
-
-    [SerializeField]
-    private float cardpos = 0.5f;
     private int _handIndex;
     private int _handCount;
 
-
     private void Update()
     {
-        for (int i = 0; i < cards.Length; i++)
+        if (cards.Count > _maxHandSize)
         {
-            cards[i].transform.position = GetCardHandPos(cardpos);
+            Debug.LogError("Too many cards in hand");
+            return;
+        }
+        if (cards.Count > 0)
+        {
+            float t = 1f / cards.Count;
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.position = GetCardHandPos(curveStartPos, t * i);
+                cards[i].transform.rotation = GetCardHandRotation(cards[i].transform.position);
+            }
         }
     }
 
-
-    private float GetDerivative(float x)
+    public Vector3 GetCardHandPos(Vector3 previousPos, float t)
     {
-        return Mathf.PI * curveHeight * Mathf.Cos(Mathf.PI * x);
+        var offset = new Vector3(cards.Count * _spacing, 0, 0);
+        var scaledStartPos = curveStartPos - offset;
+        var scaledEndPos = curveEndPos + offset;
+
+        return Trajectories.GetBezierPos(scaledStartPos, scaledEndPos, curveStartHandle, curveEndHandle, t);
     }
 
-    public Vector3 GetCardHandPos(float t)
+    public Quaternion GetCardHandRotation(Vector3 cardPos)
     {
-        float xPos = t;
-        float yPos = Mathf.Sin(xPos * Mathf.PI) * curveHeight;
-        float magnitude = Vector3.Magnitude(_curveStartPos.transform.position - _curveEndPos.transform.position);
-        Vector3 newPos = new Vector3(xPos, yPos, 0);
-        newPos = newPos * magnitude + _curveStartPos.transform.position;
-
-        return newPos;
-    }
-    public Quaternion GetCardHandRotation(float x, float y)
-    {
-        Vector3 newPos = new Vector3(GetDerivative(x), GetDerivative(y));
-        
-        return Quaternion.LookRotation(newPos);
+        var direction = cardLookAtPoint - cardPos;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0,0,90);
     }
 
     private void OnDrawGizmos()
     {
-        Vector3 previous = _curveStartPos.position;
-       
-        for (float i = 0; i < 1; i += 0.1f)
+        Vector3 previous = curveStartPos;
+
+        for (float i = 0; i < 1; i += 0.01f)
         {
-            Vector3 next = GetCardHandPos(i);
+            Vector3 next = Trajectories.GetBezierPos(curveStartPos, curveEndPos, curveStartHandle, curveEndHandle, i);
             Gizmos.DrawLine(previous, next);
-            Gizmos.color = Color.green;
-            Vector3 normal = new Vector3(GetDerivative(next.x), GetDerivative(next.y), 0);
-            normal.Set(normal.y, normal.x, 0);
-
-            Gizmos.DrawLine(next, next + normal);
-            Gizmos.color = Color.white;
-
             previous = next;
-
         }
-        Gizmos.DrawLine(previous, _curveEndPos.transform.position);
     }
 }
