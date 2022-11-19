@@ -2,18 +2,18 @@
 
 namespace TakeArms.Systems
 {
-    public class RoundStateSystem : MonoBehaviour
+    public class RoundStateSystem
     {
 
         private RoundState roundState;
 
 
-        private void Start()
+        public RoundStateSystem()
         {
             roundState = new CardPickState();
         }
 
-        private void Update()
+        private void Update() // TODO: Figure out how to do this in player controller
         {
             roundState.Update();
         }

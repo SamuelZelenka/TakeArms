@@ -1,11 +1,10 @@
 using TakeArms.Utility;
-using TakeArms.Player;
 using UnityEngine;
 using TakeArms.Services;
 
 namespace TakeArms.Systems
 {
-    public class TurnSystem : MonoBehaviour
+    public class TurnSystem
     {
         public delegate void TurnHandler();
 

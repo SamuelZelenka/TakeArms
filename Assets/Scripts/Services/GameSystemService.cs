@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TakeArms.Services
 {
+    
     public class GameSystemService
     {
         //Singletons
@@ -11,13 +12,13 @@ namespace TakeArms.Services
         public static GameBoard GameBoard => _gameBoard == null ? _gameBoard = GetSingleton<GameBoard>() : _gameBoard;
         
         private static TurnSystem _turnSystem;
-        public static TurnSystem TurnSystem => _turnSystem == null ? _turnSystem = GetSingleton<TurnSystem>() : _turnSystem;
+        public static TurnSystem TurnSystem => _turnSystem == null ? _turnSystem = new TurnSystem() : _turnSystem;
 
         private static PlayerSystem _playerSystem;
-        public static PlayerSystem PlayerSystem => _playerSystem == null ? _playerSystem = GetSingleton<PlayerSystem>() : _playerSystem;
+        public static PlayerSystem PlayerSystem => _playerSystem == null ? _playerSystem = new PlayerSystem() : _playerSystem;
 
         private static RoundStateSystem _roundStateSystem;
-        public static RoundStateSystem RoundStateSystem => _roundStateSystem == null ? _roundStateSystem = GetSingleton<RoundStateSystem>() : _roundStateSystem;
+        public static RoundStateSystem RoundStateSystem => _roundStateSystem == null ? _roundStateSystem = new RoundStateSystem() : _roundStateSystem;
 
         private static T GetSingleton<T>() where T : MonoBehaviour
         {
