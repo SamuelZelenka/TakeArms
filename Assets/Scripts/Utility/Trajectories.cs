@@ -8,10 +8,10 @@ namespace TakeArms.Utility
     {
         public static Vector3 GetBezierPos(Vector3 start, Vector3 end, Vector3 startHandle, Vector3 endHandle, float t)
         {
-            var p0 = -start * Mathf.Pow(t, 3) + 3 * start * Mathf.Pow(t, 2) - 3 * start * t + start;
-            var p1 = 3 * startHandle * Mathf.Pow(t, 3) - 6 * startHandle * Mathf.Pow(t, 2) + 3 * startHandle * t;
-            var p2 = -3 * endHandle * Mathf.Pow(t, 3) + 3 * endHandle * Mathf.Pow(t, 2);
-            var p3 = end * Mathf.Pow(t, 3);
+            var p0 = start * (1 - t) * (1 - t) * (1 - t);
+            var p1 = 3 * startHandle * (1 - t) * (1 - t) * t;
+            var p2 = 3 * endHandle * (1 - t) * t * t;
+            var p3 = end * t * t * t;
 
             return p0 + p1 + p2 + p3;
         }

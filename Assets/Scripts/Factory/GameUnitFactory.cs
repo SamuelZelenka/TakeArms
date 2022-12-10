@@ -1,12 +1,11 @@
 using TakeArms.Configurations;
 using TakeArms.GameUnits;
-using TakeArms.Player;
 using TakeArms.Services;
 using UnityEngine;
 
 public class GameUnitFactory
 {
-    public static GameUnit CreatePlayerUnit(ulong unitConfigID, GameUnitStatus unitStatus, PlayerColor playerColor)
+    public static GameUnit CreatePlayerUnit(int unitConfigID, GameUnitStatus unitStatus, int playerID)
     {
         UnitConfiguration newConfig = RepositoryService.UnitConfigRepository.GetItem(unitConfigID);
 

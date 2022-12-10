@@ -9,17 +9,11 @@ public class Repository<T> : SerializedScriptableObject where T : IRepositoryIte
 {
     [ShowInInspector]
     [OdinSerialize]
-    protected List<T> items;
+    protected Dictionary<int, T> items;
 
-    public virtual T GetItem(ulong id)
+    public virtual T GetItem(int id)
     {
-        foreach (T item in items)
-        {
-            if (item.ID == id)
-            {
-                return item;
-            }
-        }
+        T item = items[id];
         Debug.LogError($"ID: {id} was not found. Returning DEFAULT");
         return default;
     }

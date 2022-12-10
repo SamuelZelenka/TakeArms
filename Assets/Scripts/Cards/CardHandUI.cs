@@ -14,6 +14,8 @@ public class CardHandUI : MonoBehaviour
 
     public Vector3 cardLookAtPoint;
 
+    public CardSelection cardInspect;
+
     [SerializeField]
     private int _maxHandSize = 10;
 
@@ -36,11 +38,12 @@ public class CardHandUI : MonoBehaviour
         }
         if (cards.Count > 0)
         {
-            float t = 1f / cards.Count;
+            float t = 1f / _maxHandSize;
 
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].transform.position = GetCardHandPos(curveStartPos, t * i);
+                var orderPosition = (_maxHandSize / 2 - i);
+                cards[i].transform.position = GetCardHandPos(curveStartPos, t * orderPosition);
                 cards[i].transform.rotation = GetCardHandRotation(cards[i].transform.position);
             }
         }
@@ -61,7 +64,7 @@ public class CardHandUI : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         return Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0,0,90);
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Vector3 previous = curveStartPos;
@@ -73,4 +76,5 @@ public class CardHandUI : MonoBehaviour
             previous = next;
         }
     }
+#endif
 }

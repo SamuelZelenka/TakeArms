@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace TakeArms.GameData
 {
@@ -6,5 +7,6 @@ namespace TakeArms.GameData
     public class SoldierData : UnitData
     {
         public bool isWounded;
+        public Vector2Int position;
     }
 }

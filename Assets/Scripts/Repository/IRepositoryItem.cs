@@ -2,6 +2,6 @@ namespace TakeArms.Repository
 {
     public interface IRepositoryItem
     {
-        public ulong ID { get; }
+        public int ID { get; }
     }
 }

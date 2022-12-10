@@ -10,7 +10,10 @@ namespace TakeArms.Services
         //Singletons
         private static GameBoard _gameBoard;
         public static GameBoard GameBoard => _gameBoard == null ? _gameBoard = GetSingleton<GameBoard>() : _gameBoard;
-        
+
+        private static GameUISystem _gameUISystem;
+        public static GameUISystem GameUISystem => _gameUISystem == null ? _gameUISystem = GetSingleton<GameUISystem>() : _gameUISystem;
+
         private static TurnSystem _turnSystem;
         public static TurnSystem TurnSystem => _turnSystem == null ? _turnSystem = new TurnSystem() : _turnSystem;
 
