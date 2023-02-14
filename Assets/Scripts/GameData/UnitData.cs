@@ -4,10 +4,10 @@ using UnityEngine;
 namespace TakeArms.GameData
 {
     [Serializable]
-    public class UnitData
+    public abstract class UnitData
     {
         public ulong ID;
-        public Vector2Int size; // x: Right y: Down
+        public Vector2Int size;
 
         public UnitData()
         {

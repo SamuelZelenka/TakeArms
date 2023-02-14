@@ -11,7 +11,7 @@ namespace TakeArms.Configurations
     {
         public int id;
         [ShowInInspector]
-        public UnitData data = new UnitData();
+        //public UnitData data = new UnitData();
 
         public GameObject prefab;
 

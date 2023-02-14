@@ -22,15 +22,14 @@ namespace TakeArms.GameInput
             Vector2Int gridCoordinate;
 
             _screenToMouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition); 
-            _worldPosition = GameSystemService.GameBoard.GetTerrainPosFromRay(_screenToMouseRay);
         
-            gridCoordinate = GetNodeAtWorldPos(_worldPosition);
+            Physics.Raycast(_screenToMouseRay, out var hit);
+            gridCoordinate = GetNodeAtWorldPos(hit.point);
         
             float xPos = gridCoordinate.x;
-            float yPos = GameSystemService.GameBoard.GetTerrainHeightFromPosition(_worldPosition);
-            float zPos = gridCoordinate.y;
+            float yPos = gridCoordinate.y;
         
-            selectionObject.transform.position = new Vector3(xPos,yPos ,zPos);
+            selectionObject.transform.position = new Vector3(xPos, hit.point.y , yPos);
         }
 
         public Vector2Int GetNodeAtWorldPos(Vector3 worldPos)
