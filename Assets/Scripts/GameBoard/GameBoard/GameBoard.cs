@@ -29,8 +29,8 @@ namespace TakeArms.Systems
 
         public static Vector2Int GetBoardPosFromWorld(Vector3 worldPos)
         {
-            int boardPosX = (int)worldPos.x;
-            int boardPosY = (int)worldPos.y;
+            int boardPosX = Mathf.RoundToInt(worldPos.x);
+            int boardPosY = Mathf.RoundToInt(worldPos.z);
 
             return new Vector2Int(boardPosX, boardPosY);
         }

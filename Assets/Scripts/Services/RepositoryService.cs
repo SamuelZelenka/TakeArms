@@ -1,6 +1,6 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using Targeting;
+using TakeArms.Targeting;
 using UnityEditor;
 using UnityEngine;
 
@@ -38,7 +38,16 @@ namespace TakeArms.Services
 
         #endregion
 
-        [ShowInInspector] [OdinSerialize] private UnitRepository _unitConfigRepository;
+        [ShowInInspector]
+        [OdinSerialize] 
+        [BoxGroup("Units")]
+        private UnitRepository _unitConfigRepository;
+
+        [ShowInInspector]
+        [OdinSerialize]
+        [BoxGroup("Visualizer")]
+        private NodeVisualizer _nodeVisualizerPrefab;
         public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
+        public static NodeVisualizer NodeVisualizerPrefab => Instance._nodeVisualizerPrefab;
     }
 }
