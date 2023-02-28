@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace TakeArms.Utility
 {
-    public class ZGameObjectPool : ZObjectPool<GameObject>
+    public class ZGameObjectPool<T> : ZObjectPool<MonoBehaviour> where T : MonoBehaviour
     {
-        private GameObject prefab;
+        private T prefab;
         private Transform parent;
 
-        public override GameObject Acquire()
+        public override MonoBehaviour Acquire()
         {
-            GameObject acquired = base.Acquire();
-            acquired.SetActive(true);
+            T acquired = base.Acquire() as T;
+            acquired.gameObject.SetActive(true);
             return acquired;
         }
 
-        public override void Release(GameObject releaseObject)
+        public override void Release(MonoBehaviour releaseObject)
         {
             if (GetPoolSize() > capacity)
             {
@@ -22,13 +22,13 @@ namespace TakeArms.Utility
                 return;
             }
             pool.Enqueue(releaseObject);
-            releaseObject.SetActive(false);
+            releaseObject.gameObject.SetActive(false);
         }
-        public ZGameObjectPool(GameObject prefab, Transform parent)
+        public ZGameObjectPool(T prefab, Transform parent)
         {
             this.parent = parent;
             this.prefab = prefab;
-            OnCreate = () => Object.Instantiate(prefab.gameObject, parent);
+            OnCreate = () => Object.Instantiate(prefab, parent);
         }
-    } 
+    }
 }
