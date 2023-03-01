@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System.Collections.Generic;
 using TakeArms.Targeting;
 using UnityEditor;
 using UnityEngine;
@@ -49,5 +50,13 @@ namespace TakeArms.Services
         private NodeVisualizer _nodeVisualizerPrefab;
         public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
         public static NodeVisualizer NodeVisualizerPrefab => Instance._nodeVisualizerPrefab;
+
+        public static ulong GetUniqueID<TVal>(IDictionary<ulong, TVal> collection)
+        {
+            // 0 = invalid ID
+            for (ulong i = 1; true; i++)
+                if (!collection.ContainsKey(i))
+                    return i;
+        }
     }
 }

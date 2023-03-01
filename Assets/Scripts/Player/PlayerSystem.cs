@@ -13,26 +13,20 @@ namespace TakeArms.Systems
         public PlayerHandler OnPlayerRemoved;
 
         [OdinSerialize]
-        public Dictionary<int, PlayerData> players = new Dictionary<int, PlayerData>();
+        public Dictionary<ulong, PlayerData> players = new Dictionary<ulong, PlayerData>();
         public int PlayerCount { get; private set; }
 
-        private int GetUniqueID()
-        {
-            for (int i = 0; true; i++)
-                if (!players.ContainsKey(i))
-                    return i;
-        }
         public void AddPlayer()
         {
             Player player = new GameObject().AddComponent<Player>();
             player.transform.SetParent(GetPlayerParent());
-            player.Init(GetUniqueID());
+            player.Init(RepositoryService.GetUniqueID(players));
             player.name = "Player " + player.PlayerID;
             players.Add(player.PlayerID, new PlayerData(player.PlayerID));
             OnPlayerAdded?.Invoke(player);
         }
 
-        public void RemovePlayer(int playerID)
+        public void RemovePlayer(ulong playerID)
         {
             players.Remove(playerID);
             foreach (Transform child in GetPlayerParent())

@@ -5,12 +5,12 @@ using UnityEngine;
 // This is the instance of the individual player
 public class Player : MonoBehaviour
 {
-    private int playerID;
+    private ulong playerID;
     private bool aiControlled;
 
-    public int PlayerID => playerID;
+    public ulong PlayerID => playerID;
 
-    public void Init(int id)
+    public void Init(ulong id)
     {
         playerID = id;
         GameSystemService.GameUISystem.AddPlayerUI(playerID);

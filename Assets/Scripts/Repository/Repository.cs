@@ -9,12 +9,10 @@ public class Repository<T> : SerializedScriptableObject where T : IRepositoryIte
 {
     [ShowInInspector]
     [OdinSerialize]
-    protected Dictionary<int, T> items;
+    protected Dictionary<string, T> items;
 
-    public virtual T GetItem(int id)
+    public virtual T GetItem(string id)
     {
-        T item = items[id];
-        Debug.LogError($"ID: {id} was not found. Returning DEFAULT");
-        return default;
+        return items[id];
     }
 }

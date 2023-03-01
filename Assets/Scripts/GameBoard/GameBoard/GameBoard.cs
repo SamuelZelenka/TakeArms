@@ -24,7 +24,7 @@ namespace TakeArms.Systems
             float worldPosX = boardPos.x;
             float worldPosY = boardPos.y;
 
-            return new Vector3(worldPosX, worldPosY, 0);
+            return new Vector3(worldPosX, 0, worldPosY);
         }
 
         public static Vector2Int GetBoardPosFromWorld(Vector3 worldPos)
@@ -46,7 +46,7 @@ namespace TakeArms.Systems
             GameSystemService.PlayerSystem.AddPlayer();
         }
 
-        public static void RemovePlayer(int id)
+        public static void RemovePlayer(ulong id)
         {
             GameSystemService.PlayerSystem.RemovePlayer(id);
         }

@@ -20,14 +20,14 @@ public class GameUISystem : MonoBehaviour
     private CardSelection _cardSelection;
     public CardSelection CardSelection => _cardSelection;
 
-    private Dictionary<int, PlayerUI> _playerUIs = new Dictionary<int, PlayerUI>();
+    private Dictionary<ulong, PlayerUI> _playerUIs = new Dictionary<ulong, PlayerUI>();
 
     private void Start()
     {
         GameSystemService.PlayerSystem.OnPlayerRemoved += RemovePlayerUI;
     }
 
-    public void AddPlayerUI(int playerID)
+    public void AddPlayerUI(ulong playerID)
     {
         var playerUI = Instantiate(_uiPrefab, _gameCanvas.transform);
         _playerUIs.Add(playerID, playerUI);

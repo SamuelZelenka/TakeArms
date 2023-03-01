@@ -13,7 +13,7 @@ namespace TakeArms.Services
         public static void UpdateMouseNodeVisualizer(Vector2Int nodeCoordinate)
         {
             _mouseNode.ShowAt(GameBoard.GetWorldPosFromBoardPos(nodeCoordinate));
-            if (GameUnitSystem.GetGameUnitAt(nodeCoordinate) != -1)
+            if (GameUnitSystem.GetGameUnitAt(nodeCoordinate) != 0)
             {
                 _mouseNode.SetColor(Color.green);
             }

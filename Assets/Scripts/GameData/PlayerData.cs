@@ -6,7 +6,7 @@ namespace TakeArms.GameData
     [Serializable]
     public class PlayerData
     {
-        public readonly int playerID;
+        public readonly ulong playerID;
         public int playerClassID;
         public int[] deck;
         public int money;
@@ -14,12 +14,12 @@ namespace TakeArms.GameData
         public SoldierData[] soldiers;
         public BuildingData[] buildings;
 
-        public PlayerData(int playerID)
+        public PlayerData(ulong playerID)
         {
             this.playerID = playerID;
         }
 
-        public PlayerData(PlayerData data, int playerID)
+        public PlayerData(PlayerData data, ulong playerID)
         {
             this.playerID = playerID;
             playerClassID = data.playerClassID;

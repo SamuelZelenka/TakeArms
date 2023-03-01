@@ -5,11 +5,11 @@ namespace TakeArms.Targeting
 {
     public class NodeVisualizer : MonoBehaviour
     {
-        private Material _material;
+        private MeshRenderer _renderer;
 
         private void Awake()
         {
-            _material = GetComponent<Material>();
+            _renderer = GetComponent<MeshRenderer>();
         }
         public void ShowAt(Vector3 pos)
         {
@@ -17,7 +17,7 @@ namespace TakeArms.Targeting
         }
         public void SetColor(Color color)
         {
-            _material.color = color;
+            _renderer.material.color = color;
         }
 
     }
