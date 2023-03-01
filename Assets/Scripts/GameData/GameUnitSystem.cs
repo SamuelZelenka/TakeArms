@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class GameUnitSystem
 {
-    private static Dictionary<int, GameUnitStatus> _gameUnits = new Dictionary<int, GameUnitStatus>();
+    private static Dictionary<string, GameUnitStatus> _gameUnits = new Dictionary<string, GameUnitStatus>();
 
     public static void MoveUnit(int id)
     {
 
     }
 
-    public static void AddUnit(int id, UnitData data)
+    public static void AddUnit(UnitData data)
     {
-
+     
     }
 
-    public static int GetGameUnitAt(Vector2Int coordinate)
+    public static string GetGameUnitAt(Vector2Int coordinate)
     {
         foreach (var unit in _gameUnits)
         {
@@ -27,7 +27,7 @@ public class GameUnitSystem
                 return unit.Key;
             }
         }
-        return -1;
+        return null;
     }
 
 }

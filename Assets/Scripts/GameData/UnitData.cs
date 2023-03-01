@@ -6,7 +6,7 @@ namespace TakeArms.GameData
     [Serializable]
     public abstract class UnitData
     {
-        public ulong ID;
+        public string unitId;
         public Vector2Int size;
 
         public UnitData()

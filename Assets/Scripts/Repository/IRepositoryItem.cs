@@ -2,6 +2,6 @@ namespace TakeArms.Repository
 {
     public interface IRepositoryItem
     {
-        public int ID { get; }
+        public string Id { get; }
     }
 }
