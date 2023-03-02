@@ -21,5 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  id: Soldier
-  prefab: {fileID: 5920564904116611966, guid: abe89300ec4613545bc92980539b9e37, type: 3}
+  id: Assault
+  prefab: {fileID: 4424063145976029639, guid: abe89300ec4613545bc92980539b9e37, type: 3}
