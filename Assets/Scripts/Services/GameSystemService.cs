@@ -5,7 +5,7 @@ using UnityEngine;
 namespace TakeArms.Services
 {
     
-    public class GameSystemService
+    public static class GameSystemService
     {
         //Singletons
         private static GameBoard _gameBoard;
