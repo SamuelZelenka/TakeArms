@@ -28,27 +28,21 @@ namespace TakeArms.Camera
             _camera = UnityEngine.Camera.main;
             InputManager.RegisterAxis("Mouse ScrollWheel", (output) => ZoomOut(), new AxisCondition(0, LogicCondition.GreaterThan));
             InputManager.RegisterAxis("Mouse ScrollWheel", (output) => ZoomIn(), new AxisCondition(0, LogicCondition.LessThan));
+            InputManager.RegisterKey(InputKeyState.KeyDown, SetLastClickPos, KeyCode.Mouse2);
+            InputManager.RegisterKey(InputKeyState.KeyHold, DragMouse, KeyCode.Mouse2);
 
         }
 
         private void Update()
         {
             _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
-
-            if (Input.GetMouseButtonDown(2))
-            {
-                _lastClickedPos = Input.mousePosition;
-                _clickTime = Time.time;
-            }
-
-            // TODO: Smooth lerp on button release
-
-            if (Input.GetMouseButton(2))
-            {
-                _targetLocation = GetDirection();
-                MoveTowardsTarget();
-            }
         }
+        private void SetLastClickPos()
+        {
+            _lastClickedPos = Input.mousePosition;
+            _clickTime = Time.time;
+        }
+        private void DragMouse() => MoveTowardsTarget();
 
         private void ZoomOut() => _camera.orthographicSize = Mathf.Max(_minSize, _camera.orthographicSize - _cameraZoomSpeed * Time.deltaTime);
 
@@ -56,7 +50,7 @@ namespace TakeArms.Camera
 
         private void MoveTowardsTarget()
         {
-            
+            _targetLocation = GetDirection();
             float distCovered = (Time.time - _clickTime);
             float distToTarget = Vector3.Distance(transform.position, _targetLocation);
             if (distToTarget != 0)
@@ -68,19 +62,14 @@ namespace TakeArms.Camera
 
         private Vector3 GetDirection()
         {
-           Vector3 position = transform.position;
-               
-           float xPos = position.x;
-           float yPos = position.y;
-           float zPos = position.z;
-   
-           Vector3 dragDirection = Input.mousePosition - _lastClickedPos;
-           float dragMagnitude = dragDirection.magnitude;
-           dragDirection.Normalize();
-   
-           float newXDir = xPos + dragDirection.x * dragMagnitude * _cameraSpeed * Time.deltaTime;
-           float newYDir = zPos + dragDirection.y * dragMagnitude * _cameraSpeed * Time.deltaTime;
-           return new Vector3(newXDir, yPos, newYDir);
+            Vector3 dragDirection = Input.mousePosition - _lastClickedPos;
+            float dragMagnitude = dragDirection.magnitude;
+            dragDirection.Normalize();
+
+            Quaternion rotation = Quaternion.Euler(0, 0, -45);
+            dragDirection = rotation * dragDirection;
+
+            return transform.position + new Vector3(dragDirection.x, 0f, dragDirection.y) * dragMagnitude * _cameraSpeed * Time.deltaTime;
         }
-   }
+    }
 }
