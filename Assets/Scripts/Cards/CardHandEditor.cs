@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(CardHandUI))]
 public class CardHandEditor : Editor
 {
@@ -28,3 +28,4 @@ public class CardHandEditor : Editor
         }
     }
 }
+#endif
