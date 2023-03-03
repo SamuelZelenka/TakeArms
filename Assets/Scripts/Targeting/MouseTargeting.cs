@@ -5,35 +5,38 @@ namespace TakeArms.GameInput
     using TakeArms.Systems;
     using UnityEngine;
     public class MouseTargeting : MonoBehaviour
-    {
-        [SerializeField]
-        private GameObject selectionObject;
-    
+    {    
         private Camera _mainCamera;
-        private Vector3 _worldPosition;
         private Ray _screenToMouseRay;
-        Vector3 hitpoint;
 
         private void Awake()
         {
             _mainCamera = Camera.main;
-            InputManager.RegisterKey(InputKeyState.KeyDown, SpawnUnit, KeyCode.Space);
+            InputManager.RegisterKey(InputKeyState.KeyDown, SpawnUnit, KeyCode.Mouse0);
         }
 
         private void Update()
         {
             Vector2Int gridCoordinate;
+            NodeVisualizerSystem.UpdateMouseNodeVisualizer(GameBoard.GetBoardPosFromWorld(GetMouseWorldPos()));
+        }
 
-            _screenToMouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition); 
-        
+        public Vector3 GetMouseWorldPos()
+        {
+            _screenToMouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(_screenToMouseRay, out var hit);
-            hitpoint = hit.point;
-            NodeVisualizerSystem.UpdateMouseNodeVisualizer(GameBoard.GetBoardPosFromWorld(hit.point));
+            return hit.point;
+        }
+
+        public Vector2Int GetMouseCoordinate()
+        {
+            var mousePos = GetMouseWorldPos();
+            return GameBoard.GetBoardPosFromWorld(mousePos);
         }
 
         public void SpawnUnit()
         {
-            GameUnitSystem.SpawnUnit(RepositoryService.UnitConfigRepository.GetItem("Assault") , GameBoard.GetBoardPosFromWorld(hitpoint));
+            GameUnitSystem.SpawnUnit(RepositoryService.UnitConfigRepository.GetItem("Assault") , GetMouseCoordinate());
         }
     }
 }
