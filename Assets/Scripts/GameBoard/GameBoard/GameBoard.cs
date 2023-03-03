@@ -24,7 +24,12 @@ namespace TakeArms.Systems
             float worldPosX = boardPos.x;
             float worldPosY = boardPos.y;
 
-            return new Vector3(worldPosX, 0, worldPosY);
+            var terrain = FindObjectOfType<Terrain>();
+
+            var newPos = new Vector3(worldPosX, 0, worldPosY);
+            newPos.y = terrain.SampleHeight(newPos);
+
+            return newPos;
         }
 
         public static Vector2Int GetBoardPosFromWorld(Vector3 worldPos)
@@ -39,16 +44,6 @@ namespace TakeArms.Systems
         {
             //GameUnit unitToMove = GameSystemService.GameBoard.gameUnits[unit];
             //unitToMove.unitStatus.boardPosition = newPosition;
-        }
-
-        public static void AddPlayer()
-        {
-            GameSystemService.PlayerSystem.AddPlayer();
-        }
-
-        public static void RemovePlayer(ulong id)
-        {
-            GameSystemService.PlayerSystem.RemovePlayer(id);
         }
     }
 }
