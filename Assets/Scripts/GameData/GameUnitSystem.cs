@@ -20,6 +20,9 @@ public class GameUnitSystem
 
     public static void SpawnUnit(UnitConfiguration config, Vector2Int coordinate)
     {
+        if (GetGameUnitAt(coordinate) != 0)
+            return;
+        
         var newUnit = Object.Instantiate(config.prefab);
         var newUnitStatus = new GameUnitStatus(newUnit, coordinate);
         var uniqueId = RepositoryService.GetUniqueID(_gameUnits);
