@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Collections.Generic;
+using TakeArms.Repository;
 using TakeArms.Targeting;
 using UnityEditor;
 using UnityEngine;
@@ -46,9 +47,15 @@ namespace TakeArms.Services
 
         [ShowInInspector]
         [OdinSerialize]
+        [BoxGroup("ActionCard")]
+        private ActionCardRepository _actionCardRepository;
+
+        [ShowInInspector]
+        [OdinSerialize]
         [BoxGroup("Visualizer")]
         private NodeVisualizer _nodeVisualizerPrefab;
         public static UnitRepository UnitConfigRepository => Instance._unitConfigRepository;
+        public static ActionCardRepository ActionConfigRepository => Instance._actionCardRepository;
         public static NodeVisualizer NodeVisualizerPrefab => Instance._nodeVisualizerPrefab;
 
         public static ulong GetUniqueID<TVal>(IDictionary<ulong, TVal> collection)
