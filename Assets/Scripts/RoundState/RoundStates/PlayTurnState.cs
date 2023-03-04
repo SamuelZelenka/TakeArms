@@ -11,10 +11,7 @@ namespace TakeArms.Systems
         }
         public override void Update()
         {
-            if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.RightControl))
-            {
-                GameSystemService.TurnSystem.NextPlayerTurn();
-            }
+
         }
 
         public override void End()
