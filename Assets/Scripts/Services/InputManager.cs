@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private static HashSet<InputBase> _inputs = new HashSet<InputBase>();
+    private static Dictionary<InputGroup, HashSet<InputBase>> _inputs = new Dictionary<InputGroup, HashSet<InputBase>>();
+    private static InputGroup _activeInputGroup = InputGroup.Menu;
     private static InputManager _instance;
     public static InputManager Instance => _instance;
 
@@ -14,28 +15,41 @@ public class InputManager : MonoBehaviour
     {
         _instance = new GameObject().AddComponent<InputManager>();
         _instance.name = "InputManager";
+
+        foreach (var inputGroup in Enum.GetValues(typeof(InputGroup)))
+        {
+            _inputs.Add((InputGroup)inputGroup, new HashSet<InputBase>());
+        }
+
         DontDestroyOnLoad(_instance);
     }
 
     public void Update()
     {
-        foreach (var input in _inputs)
+        foreach (var input in _inputs[_activeInputGroup])
         {
             input.CheckInput();
         }
     }
 
-    public static void RegisterKey(InputKeyState keyState , Action action, params KeyCode[] keycodes)
+
+    public static void RegisterKey(InputGroup inputGroup, InputKey key) =>_inputs[inputGroup].Add(key);
+    public static void RegisterKeys(InputGroup inputGroup, params InputKey[] keys)
     {
-        foreach (var key in keycodes)
+        foreach (var key in keys)
         {
-            _inputs.Add(new InputKey(key, keyState, action));
+            _inputs[inputGroup].Add(key);
         }
     }
 
-    public static void RegisterAxis(string key, Action<float> action, AxisCondition axisCondition = new AxisCondition())
+    public static void RegisterAxis(InputGroup inputGroup, string key, Action<float> action, AxisCondition axisCondition = new AxisCondition())
     {
-        _inputs.Add(new InputAxis(key, action, axisCondition));
+        _inputs[inputGroup].Add(new InputAxis(key, action, axisCondition));
+    }
+
+    public static void SetInputGroup(InputGroup inputGroup)
+    {
+        _activeInputGroup = inputGroup;
     }
 }
 
@@ -46,12 +60,15 @@ public abstract class InputBase
 
 public class InputKey : InputBase
 {
+    public bool enabled;
+
     private KeyCode _key;
     private InputKeyState _inputKeyState;
     private event Action _action;
 
-    public InputKey(KeyCode key, InputKeyState inputKeyState, Action action)
+    public InputKey(KeyCode key, InputKeyState inputKeyState, Action action, bool enabled = true)
     {
+        this.enabled = enabled;
         _key = key;
         _action = action;
         _inputKeyState = inputKeyState;
@@ -59,6 +76,9 @@ public class InputKey : InputBase
 
     public override void CheckInput()
     {
+        if (!enabled)
+            return;
+
         switch (_inputKeyState)
         {
             case InputKeyState.KeyHold  when Input.GetKey(_key):
@@ -137,4 +157,11 @@ public enum LogicCondition
     LessThan,
     LessThanOrEqual,
     Equal
+}
+
+//Add input groups here
+public enum InputGroup
+{
+    Menu,
+    Playing,
 }

@@ -12,7 +12,6 @@ namespace TakeArms.GameInput
         private void Awake()
         {
             _mainCamera = Camera.main;
-            InputManager.RegisterKey(InputKeyState.KeyDown, SpawnUnit, KeyCode.Mouse0);
         }
 
         private void Update()
@@ -32,11 +31,6 @@ namespace TakeArms.GameInput
         {
             var mousePos = GetMouseWorldPos();
             return GameBoard.GetBoardPosFromWorld(mousePos);
-        }
-
-        public void SpawnUnit()
-        {
-            GameUnitSystem.SpawnUnit(RepositoryService.UnitConfigRepository.GetItem("Assault") , GetMouseCoordinate());
         }
     }
 }

@@ -23,13 +23,21 @@ namespace TakeArms.Camera
 
         private UnityEngine.Camera _camera;
 
+
+        private InputKey MouseDownInput;
+        private InputKey MouseDragInput;
+
         private void Start()
         {
             _camera = UnityEngine.Camera.main;
-            InputManager.RegisterAxis("Mouse ScrollWheel", (output) => ZoomOut(), new AxisCondition(0, LogicCondition.GreaterThan));
-            InputManager.RegisterAxis("Mouse ScrollWheel", (output) => ZoomIn(), new AxisCondition(0, LogicCondition.LessThan));
-            InputManager.RegisterKey(InputKeyState.KeyDown, SetLastClickPos, KeyCode.Mouse2);
-            InputManager.RegisterKey(InputKeyState.KeyHold, DragMouse, KeyCode.Mouse2);
+            InputManager.RegisterAxis(InputGroup.Playing, "Mouse ScrollWheel", (output) => ZoomOut(), new AxisCondition(0, LogicCondition.GreaterThan));
+            InputManager.RegisterAxis(InputGroup.Playing, "Mouse ScrollWheel", (output) => ZoomIn(), new AxisCondition(0, LogicCondition.LessThan));
+
+            MouseDownInput = new InputKey(KeyCode.Mouse2, InputKeyState.KeyDown, SetLastClickPos);
+            MouseDragInput = new InputKey(KeyCode.Mouse2, InputKeyState.KeyHold, DragMouse);
+
+            InputManager.RegisterKey(InputGroup.Playing, MouseDownInput);
+            InputManager.RegisterKey(InputGroup.Playing, MouseDragInput);
 
         }
 
