@@ -9,5 +9,4 @@
 
         public override RoundState GetNextRoundState() => new CardPickState();
     }
-
 }

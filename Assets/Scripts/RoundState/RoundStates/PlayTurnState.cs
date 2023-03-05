@@ -22,5 +22,4 @@ namespace TakeArms.Systems
 
         public override RoundState GetNextRoundState() => new EndTurnState();
     }
-
 }

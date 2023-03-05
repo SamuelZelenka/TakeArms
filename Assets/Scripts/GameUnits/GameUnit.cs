@@ -1,7 +1,4 @@
 using TakeArms.Configurations;
-using TakeArms.Services;
-using TakeArms.Systems;
-
 using UnityEngine;
 
 namespace TakeArms.GameUnits

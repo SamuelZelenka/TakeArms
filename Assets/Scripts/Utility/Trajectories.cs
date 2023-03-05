@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TakeArms.Utility
@@ -15,6 +13,7 @@ namespace TakeArms.Utility
 
             return p0 + p1 + p2 + p3;
         }
+
         public static Vector3 GetDerivative(Vector3 start, Vector3 end, Vector3 startHandle, Vector3 endHandle, float t)
         {
             var p0 = -3 * start * Mathf.Pow(t, 2) + 6 * start * t - 3 * start;
@@ -27,5 +26,4 @@ namespace TakeArms.Utility
             return p0 + p1 + p2 + p3;
         }
     }
-
 }

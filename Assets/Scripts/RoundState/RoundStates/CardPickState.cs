@@ -22,7 +22,6 @@ namespace TakeArms.Systems
 
             GameSystemService.RoundStateSystem.NextRoundState();
         }
-
         public override RoundState GetNextRoundState() => new PlayOrderState();
     }
 }

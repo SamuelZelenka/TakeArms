@@ -1,5 +1,4 @@
-﻿using TakeArms.Systems;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TakeArms.Targeting
 {
@@ -19,6 +18,5 @@ namespace TakeArms.Targeting
         {
             _renderer.material.color = color;
         }
-
     }
 }

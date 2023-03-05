@@ -1,6 +1,5 @@
 using System;
 using TakeArms.Configurations;
-
 using UnityEngine;
 
 namespace TakeArms.Repository
@@ -11,5 +10,4 @@ namespace TakeArms.Repository
     {
 
     }
-    
 }

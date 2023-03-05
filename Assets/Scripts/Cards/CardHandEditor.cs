@@ -1,30 +1,35 @@
 using UnityEngine;
 using UnityEditor;
+using TakeArms.UI;
+
 #if UNITY_EDITOR
-[CustomEditor(typeof(CardHandUI))]
-public class CardHandEditor : Editor
+namespace TakeArms.Editors
 {
-    private void OnSceneGUI()
+    [CustomEditor(typeof(CardHandUI))]
+    public class CardHandEditor : Editor
     {
-        CardHandUI cardHandUI = (CardHandUI)target;
-
-        EditorGUI.BeginChangeCheck();
-
-        var newCurveStartPos = Handles.PositionHandle(cardHandUI.curveStartPos, Quaternion.identity);
-        var newCurveStartHandle = Handles.PositionHandle(cardHandUI.curveStartHandle, Quaternion.identity);
-        var newCurveEndHandle = Handles.PositionHandle(cardHandUI.curveEndHandle, Quaternion.identity);
-        var newCurveEndPos = Handles.PositionHandle(cardHandUI.curveEndPos, Quaternion.identity);
-
-        var lookAtPoint = Handles.PositionHandle(cardHandUI.cardLookAtPoint, Quaternion.identity);
-
-        if (EditorGUI.EndChangeCheck())
+        private void OnSceneGUI()
         {
-            Undo.RecordObject(cardHandUI, "Change Look At Target Position");
-            cardHandUI.curveStartPos = newCurveStartPos;
-            cardHandUI.curveStartHandle = newCurveStartHandle;
-            cardHandUI.curveEndHandle = newCurveEndHandle;
-            cardHandUI.curveEndPos = newCurveEndPos;
-            cardHandUI.cardLookAtPoint = lookAtPoint;
+            CardHandUI cardHandUI = (CardHandUI)target;
+
+            EditorGUI.BeginChangeCheck();
+
+            var newCurveStartPos = Handles.PositionHandle(cardHandUI.curveStartPos, Quaternion.identity);
+            var newCurveStartHandle = Handles.PositionHandle(cardHandUI.curveStartHandle, Quaternion.identity);
+            var newCurveEndHandle = Handles.PositionHandle(cardHandUI.curveEndHandle, Quaternion.identity);
+            var newCurveEndPos = Handles.PositionHandle(cardHandUI.curveEndPos, Quaternion.identity);
+
+            var lookAtPoint = Handles.PositionHandle(cardHandUI.cardLookAtPoint, Quaternion.identity);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(cardHandUI, "Change Look At Target Position");
+                cardHandUI.curveStartPos = newCurveStartPos;
+                cardHandUI.curveStartHandle = newCurveStartHandle;
+                cardHandUI.curveEndHandle = newCurveEndHandle;
+                cardHandUI.curveEndPos = newCurveEndPos;
+                cardHandUI.cardLookAtPoint = lookAtPoint;
+            }
         }
     }
 }

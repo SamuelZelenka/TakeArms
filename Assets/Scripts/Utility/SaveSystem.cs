@@ -14,7 +14,6 @@ namespace TakeArms.Utility
 #else      
             return Application.persistentDataPath + $"/{directory}/"; 
 #endif
-            
         }
 
         public static void SaveData(string fileName, string directory, string jsonString, string fileType)

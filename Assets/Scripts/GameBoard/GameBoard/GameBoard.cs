@@ -1,4 +1,3 @@
-using TakeArms.Configurations;
 using TakeArms.Services;
 using TakeArms.GameUnits;
 using System.Collections.Generic;
@@ -47,4 +46,3 @@ namespace TakeArms.Systems
         }
     }
 }
-

@@ -1,5 +1,4 @@
 using System;
-using TakeArms.Services;
 
 namespace TakeArms.GameData
 {
@@ -29,6 +28,5 @@ namespace TakeArms.GameData
             soldiers = data.soldiers;
             buildings = data.buildings;
         }
-
     }
 }

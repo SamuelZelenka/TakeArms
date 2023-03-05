@@ -1,8 +1,6 @@
 using TakeArms.Utility;
-
 using System;
 using UnityEngine;
-
 
 namespace TakeArms.GameData
 {

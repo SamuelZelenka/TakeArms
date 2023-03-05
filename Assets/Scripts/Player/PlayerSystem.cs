@@ -1,6 +1,7 @@
 using Sirenix.Serialization;
 using System.Collections.Generic;
 using TakeArms.GameData;
+using TakeArms.Gameplay;
 using TakeArms.Services;
 using UnityEngine;
 
@@ -53,4 +54,3 @@ namespace TakeArms.Systems
         }
     }
 }
-

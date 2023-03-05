@@ -7,7 +7,6 @@ namespace TakeArms.Systems
 
         private RoundState roundState;
 
-
         public RoundStateSystem()
         {
             roundState = new CardPickState();
@@ -30,4 +29,3 @@ namespace TakeArms.Systems
         }
     }
 }
-

@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using TakeArms.Gameplay;
 using UnityEngine;
 
-public class CardSystem
+namespace TakeArms.Systems
 {
-    public static CardSelection cardInspect;
-
-    public CardSystem()
+    public class CardSystem
     {
-        cardInspect = GameObject.FindObjectOfType<CardSelection>();
+        public static CardSelection cardInspect;
+
+        public CardSystem()
+        {
+            cardInspect = GameObject.FindObjectOfType<CardSelection>();
+        }
     }
 }

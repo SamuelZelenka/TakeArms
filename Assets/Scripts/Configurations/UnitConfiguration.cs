@@ -1,6 +1,4 @@
-using TakeArms.GameData;
 using TakeArms.Repository;
-
 using Sirenix.OdinInspector;
 using UnityEngine;
 

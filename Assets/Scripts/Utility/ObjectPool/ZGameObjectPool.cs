@@ -24,6 +24,7 @@ namespace TakeArms.Utility
             pool.Enqueue(releaseObject);
             releaseObject.gameObject.SetActive(false);
         }
+
         public ZGameObjectPool(T prefab, Transform parent)
         {
             this.parent = parent;

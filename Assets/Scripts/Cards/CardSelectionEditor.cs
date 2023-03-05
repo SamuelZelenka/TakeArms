@@ -1,28 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
+using TakeArms.Gameplay;
 using UnityEditor;
 
-[CustomEditor(typeof(CardSelection))]
-public class CardSelectionEditor : Editor
+#if UNITY_EDITOR
+namespace TakeArms.Editors
 {
-
-    private void OnSceneGUI()
+    [CustomEditor(typeof(CardSelection))]
+    public class CardSelectionEditor : Editor
     {
-        CardSelection cardSelection = (CardSelection)target;
-
-        EditorGUI.BeginChangeCheck();
-
-        var newCurveStartHandle = Handles.PositionHandle(cardSelection.startHandle, Quaternion.identity);
-        var newCurveEndHandle = Handles.PositionHandle(cardSelection.endHandle, Quaternion.identity);
-
-        if (EditorGUI.EndChangeCheck())
+        private void OnSceneGUI()
         {
-            cardSelection.startHandle = newCurveStartHandle;
-            cardSelection.endHandle = newCurveEndHandle;
+            CardSelection cardSelection = (CardSelection)target;
+
+            EditorGUI.BeginChangeCheck();
+
+            var newCurveStartHandle = Handles.PositionHandle(cardSelection.startHandle, Quaternion.identity);
+            var newCurveEndHandle = Handles.PositionHandle(cardSelection.endHandle, Quaternion.identity);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                cardSelection.startHandle = newCurveStartHandle;
+                cardSelection.endHandle = newCurveEndHandle;
+            }
         }
     }
-    
 }
 #endif

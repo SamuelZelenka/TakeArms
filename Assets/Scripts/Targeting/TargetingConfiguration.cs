@@ -22,7 +22,6 @@ public abstract class TargetingConfiguration
 
 public class UnitTargeting : TargetingConfiguration
 {
-    
     public override UnitData[] GetTargetNodes()
     {
         if (isTargeting)
@@ -38,6 +37,7 @@ public class UnitTargeting : TargetingConfiguration
         }
         return null;
     }
+
     public override bool IsValidTarget(Vector2Int nodePosition)
     {
         return true;

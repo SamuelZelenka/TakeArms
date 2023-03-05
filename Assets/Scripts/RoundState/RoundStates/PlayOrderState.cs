@@ -17,8 +17,6 @@ namespace TakeArms.Systems
         {
             
         }
-
         public override RoundState GetNextRoundState() => new PlayTurnState();
     }
-
 }

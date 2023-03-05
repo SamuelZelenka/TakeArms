@@ -19,5 +19,4 @@ namespace TakeArms.Systems
         public abstract void Update();
         public abstract RoundState GetNextRoundState();
     }
-
 }

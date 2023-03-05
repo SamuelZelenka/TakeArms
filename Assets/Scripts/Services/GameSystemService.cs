@@ -1,10 +1,8 @@
 using TakeArms.Systems;
-
 using UnityEngine;
 
 namespace TakeArms.Services
 {
-    
     public static class GameSystemService
     {
         //Singletons
