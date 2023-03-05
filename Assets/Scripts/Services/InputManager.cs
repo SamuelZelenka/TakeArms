@@ -6,7 +6,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private static Dictionary<InputGroup, HashSet<InputBase>> _inputs = new Dictionary<InputGroup, HashSet<InputBase>>();
-    private static InputGroup _activeInputGroup = InputGroup.Menu;
+    private static InputGroup _activeInputGroup = InputGroup.Playing;
     private static InputManager _instance;
     public static InputManager Instance => _instance;
 
@@ -42,9 +42,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public static void RegisterAxis(InputGroup inputGroup, string key, Action<float> action, AxisCondition axisCondition = new AxisCondition())
+    public static void RegisterAxis(InputGroup inputGroup, InputAxis inputAxis)
     {
-        _inputs[inputGroup].Add(new InputAxis(key, action, axisCondition));
+        _inputs[inputGroup].Add(inputAxis);
+    }
+
+    public static void RegisterDualAxis(InputGroup inputGroup, InputDualAxis axis)
+    {
+        _inputs[inputGroup].Add(axis);
     }
 
     public static void SetInputGroup(InputGroup inputGroup)
@@ -92,10 +97,27 @@ public class InputKey : InputBase
     }
 }
 
+public class InputDualAxis : InputBase
+{
+    private string _axis1;
+    private string _axis2;
+    private Action<Vector2> _action;
 
+    public InputDualAxis(string axis1, string axis2, Action<Vector2> action)
+    {
+        _axis1 = axis1;
+        _axis2 = axis2;
+        _action = action;
+    }
+
+    public override void CheckInput()
+    {
+        _action?.Invoke(new Vector2(Input.GetAxis(_axis1), Input.GetAxis(_axis2)));
+    }
+
+}
 public class InputAxis : InputBase
 {
-    private float _lastValue;
     private string _axis;
     private Action<float> _action;
     private AxisCondition _axisCondition;
@@ -110,24 +132,21 @@ public class InputAxis : InputBase
     public override void CheckInput()
     {
         var value = Input.GetAxis(_axis);
-        if (value != _lastValue)
-        {
-            switch (_axisCondition.condition)
-            {
-                case LogicCondition.None:
-                case LogicCondition.GreaterThan         when value > _axisCondition.value:
-                case LogicCondition.GreaterThanOrEqual  when value >= _axisCondition.value:
-                case LogicCondition.LessThan            when value < _axisCondition.value:
-                case LogicCondition.LessThanOrEqual     when value <= _axisCondition.value:
-                case LogicCondition.Equal               when value == _axisCondition.value:
-                    _action?.Invoke(_lastValue);
-                    break;
-                default:
-                    break;
-            }
-        }
-        _lastValue = value;
 
+        switch (_axisCondition.condition)
+        {
+            case LogicCondition.None:
+            case LogicCondition.GreaterThan         when value > _axisCondition.value:
+            case LogicCondition.GreaterThanOrEqual  when value >= _axisCondition.value:
+            case LogicCondition.LessThan            when value < _axisCondition.value:
+            case LogicCondition.LessThanOrEqual     when value <= _axisCondition.value:
+            case LogicCondition.Equal               when value == _axisCondition.value:
+            case LogicCondition.NotEqual            when value != _axisCondition.value:
+                _action?.Invoke(value);
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -156,7 +175,8 @@ public enum LogicCondition
     GreaterThanOrEqual,
     LessThan,
     LessThanOrEqual,
-    Equal
+    Equal,
+    NotEqual
 }
 
 //Add input groups here
