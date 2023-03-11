@@ -16,6 +16,7 @@ namespace TakeArms.GameInput
         {
             _instance = new GameObject().AddComponent<InputManager>();
             _instance.name = "InputManager";
+            _activeInputGroup = InputGroup.Playing;
 
             foreach (var inputGroup in Enum.GetValues(typeof(InputGroup)))
                 _inputs.Add((InputGroup)inputGroup, new HashSet<InputBase>());

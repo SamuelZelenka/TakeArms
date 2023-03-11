@@ -19,7 +19,7 @@ namespace TakeArms.Camera
 
         private float _clickTime;
         private Vector2 _lastClickedPos;
-        private Vector2 _targetLocation;
+        private Vector3 _targetLocation;
 
         private void Start()
         {
@@ -55,7 +55,7 @@ namespace TakeArms.Camera
 
         private void MoveTowardsTarget(Vector2 direction)
         {
-            _targetLocation = GetDirection(direction);
+            _targetLocation = GetTargetLocation(direction);
 
             float distCovered = (Time.time - _clickTime);
             float distToTarget = Vector3.Distance(transform.position, _targetLocation);
@@ -68,15 +68,15 @@ namespace TakeArms.Camera
             transform.position = Vector3.Lerp(transform.position, _targetLocation, fractionCovered);
         }
 
-        private Vector3 GetDirection(Vector2 screenDir)
+        private Vector3 GetTargetLocation(Vector2 screenDir)
         {
             float dragMagnitude = screenDir.magnitude;
             screenDir.Normalize();
 
             Quaternion rotation = Quaternion.Euler(0, 0, -45);
             screenDir = rotation * screenDir;
-
-            return transform.position + new Vector3(screenDir.x, 0f, screenDir.y) * dragMagnitude * _cameraSpeed * Time.deltaTime;
+            Vector3 targetLocation = new Vector3(screenDir.x, 0f, screenDir.y) * dragMagnitude * _cameraSpeed * Time.deltaTime;
+            return transform.position + targetLocation;
         }
     }
 }
